@@ -48,14 +48,23 @@ When the user names a module:
 ## Extraction Priority Rules
 
 Default extraction priority inside a module:
-1. unseen system questions
-2. unseen custom questions
-3. optionally repeated questions only after user consent
+1. 高频题（unseen first）
+2. 中高频题（unseen first）
+3. 加分题（unseen first）
+4. unseen custom questions when applicable
+5. optionally repeated questions only after user consent
 
 For special modes:
-- wrong mode → wrong-question bank first
-- favorites mode → favorites bank first
-- custom mode → custom-question bank first
+- wrong mode → wrong-question bank first; if frequency info exists, still prefer 高频 within wrong questions
+- favorites mode → favorites bank first; if frequency info exists, still prefer 高频 within favorites
+- custom mode → custom-question bank first; if frequency info exists, still prefer 高频 within custom questions
+
+## Future Module Rule
+
+Any newly created module must inherit the same routing rule:
+- build high-frequency questions first
+- then medium-high-frequency questions
+- then bonus / differentiator questions
 
 ## History Rules
 

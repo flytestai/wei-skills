@@ -39,6 +39,9 @@ Use this skill when the user wants to:
 - If the user explicitly names a module, switch to that module.
 - Newly generated questions should avoid the module's brushed history first.
 - Questions brushed in any mode must be written into history.
+- For **all modules**, prefer **高频** questions first, then **中高频**, then **加分题**.
+- This high-frequency-first rule applies to both **刷题模式** and **做题模式**.
+- Any future newly created module must inherit the same high-frequency-first routing rule.
 
 ## Supported Drill Modes
 
