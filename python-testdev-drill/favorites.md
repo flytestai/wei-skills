@@ -13,4 +13,8 @@
 ## 测试开发面试题
 
 ## Python编程基础理论面试题
+- 协程和线程区别
+- Python 的垃圾回收机制是怎样的
+- try / except / else / finally 分别有什么作用
 
+## 测试工程化与CI/CD

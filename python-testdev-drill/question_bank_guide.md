@@ -8,60 +8,75 @@
 适合刷手写代码、基础算法、常见数据结构处理。
 
 推荐标签：
-- string
-- list
-- dict
-- set
-- two-pointers
-- sorting
-- stack
-- queue
-- hash
-- dp-basic
+- 字符串
+- 列表
+- 字典
+- 集合
+- 双指针
+- 排序
+- 栈
+- 队列
+- 哈希
+- 动态规划基础
 
 ### 2. Python编程基础理论面试题
 适合理解 Python 语言机制与常见面试问答。
 
 推荐标签：
-- data-types
-- copy
-- decorator
-- generator
-- iterator
-- closure
-- gc
-- gil
-- coroutine
-- exception
-- oop
+- 数据类型
+- 拷贝
+- 装饰器
+- 生成器
+- 迭代器
+- 闭包
+- 垃圾回收
+- GIL
+- 协程
+- 异常
+- 面向对象
 
 ### 3. 自动化测试题
 适合自动化测试实践与方法论。
 
 推荐标签：
-- case-design
-- api-test
-- ui-test
-- mock
-- pytest
-- ci-cd
-- flaky
-- environment
-- metrics
+- 用例设计
+- 接口测试
+- UI自动化
+- Mock
+- Pytest
+- CI/CD
+- 不稳定用例
+- 环境隔离
+- 质量指标
 
 ### 4. 测试开发面试题
 适合测试开发平台设计、架构和工程能力。
 
 推荐标签：
-- platform-design
-- scheduler
-- report-system
-- permission
-- observability
-- async
-- concurrency
-- db-modeling
-- service-design
+- 平台设计
+- 调度系统
+- 报告系统
+- 权限设计
+- 可观测性
+- 异步
+- 并发
+- 数据建模
+- 服务设计
+
+### 5. 测试工程化与CI/CD
+适合测试开发相关的工程化、持续集成与交付类面试题。
+
+推荐标签：
+- Git
+- Jenkins
+- Docker
+- Linux
+- SQL
+- 持续集成
+- 发布流程
+- 环境管理
+- 日志排查
+- 数据校验
 
 ## 题目结构建议
 

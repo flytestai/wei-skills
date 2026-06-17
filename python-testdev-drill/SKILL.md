@@ -232,3 +232,4 @@ Record wrong or weak items into the module's wrong-question notebook when approp
 - 自动化测试题
 - 测试开发面试题
 - Python编程基础理论面试题
+- 测试工程化与CI/CD
