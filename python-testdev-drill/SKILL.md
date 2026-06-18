@@ -24,18 +24,23 @@ This skill is no longer just a one-question practice flow. It is a **persistent 
 Use this skill when the user wants to:
 - practice interview questions by module
 - choose how many questions to receive at once
-- receive each question with its answer
 - continue from saved progress
 - review wrong questions
 - review favorite questions
 - save custom questions into a module bank
 - avoid repeating questions already brushed
+- use **刷题模式**（题目 + 参考答案）
+- use **做题模式**（只给题目，用户作答后再评分和建议）
 
 ## Core Behavior
 
 - Support both **single-question** and **multi-question** drill.
-- Default drill output may include the answer when the user is in 刷题 mode.
-- If the user says `继续`, resume the last module and last drill mode.
+- The skill supports two first-class interaction modes:
+  - **刷题模式** = give the question and show the reference answer by default
+  - **做题模式** = give the question only, wait for the user's answer, then score and advise
+- If the user says `继续`, resume the last module, last drill mode, and last batch size.
+- If the user says `继续刷题`, force resume in **刷题模式**.
+- If the user says `继续做题`, force resume in **做题模式**.
 - If the user explicitly names a module, switch to that module.
 - Newly generated questions should avoid the module's brushed history first.
 - Questions brushed in any mode must be written into history.
@@ -53,6 +58,7 @@ Examples:
 Behavior:
 - select unseen questions first
 - can mix system bank + custom bank if appropriate
+- show reference answers by default
 
 ### 2. 选择模块刷题
 Examples:
@@ -64,39 +70,68 @@ Behavior:
 - default to unseen questions first
 - each question includes a reference answer unless the user asks to hide answers
 
-### 3. 错题集刷题
+### 3. 随机做题
+Examples:
+- `随机做 3 道题`
+- `随机做 5 道 Python 面试题`
+
+Behavior:
+- select unseen questions first
+- can mix system bank + custom bank if appropriate
+- do not show the answer by default
+- wait for the user answer, then score and advise
+
+### 4. 选择模块做题
+Examples:
+- `做 3 道 Python基础手写代码题`
+- `做 5 道 自动化测试题`
+- `继续 Python编程基础理论面试题做题`
+
+Behavior:
+- extract from the named module
+- default to unseen questions first
+- do not show the answer by default
+- after the user answers, score on correctness, edge cases, style, complexity, and expression clarity
+
+### 5. 错题集刷题 / 做题
 Examples:
 - `刷错题集`
-- `刷 5 道 自动化测试题错题`
+- `做错题集`
+- `做 5 道 自动化测试题错题`
 
 Behavior:
 - prioritize historically mistaken questions
 - if wrong bank is empty, say so clearly
+- 刷题模式显示答案，做题模式先不给答案
 
-### 4. 收藏题库刷题
+### 6. 收藏题库刷题 / 做题
 Examples:
 - `刷收藏题`
-- `刷 3 道 测试开发面试题收藏题`
+- `做 3 道 测试开发面试题收藏题`
 
 Behavior:
 - extract from favorite questions only
+- 刷题模式显示答案，做题模式先不给答案
 
-### 5. 自建题库刷题
+### 7. 自建题库刷题 / 做题
 Examples:
 - `刷自建题库`
-- `从 Python基础手写代码题自建题库刷 4 道`
+- `从 Python基础手写代码题自建题库做 4 道`
 
 Behavior:
 - extract from user-saved custom questions only
+- 刷题模式显示答案，做题模式先不给答案
 
 ## Answer Visibility Rules
 
 ### Default rules
-- In `刷题` mode, each question may include a concise reference answer by default.
+- In `刷题` mode, each question should include a concise reference answer by default.
+- In `做题` mode, the answer should be hidden by default.
 - If the user asks `先只给题，不要答案`, hide answers for the current round.
 - If the user later asks `看答案`, reveal the stored answer.
+- In `做题` mode, after the user submits an answer, score first and give suggestions first; only reveal the reference answer when the user asks for it or when it is clearly necessary for correction.
 
-### Legacy answer request
+### Legacy / direct answer request
 If the user says:
 - `给出答案`
 - `直接给答案`
@@ -104,6 +139,7 @@ If the user says:
 Behavior:
 - provide the answer to the current question
 - add that question to the module's wrong-question notebook if appropriate
+- this rule applies especially to `做题模式`, because asking directly for the answer means the current question should be treated as a weak point
 
 ## Question Bank Layers
 
@@ -171,12 +207,16 @@ Examples:
 ### Default extraction
 - If the user does not specify a mode, use the current module and prefer unseen questions first.
 - If the user only says `继续`, reuse the last module, last mode, and last batch size.
+- If the user says `继续刷题`, explicitly continue in `刷题模式`.
+- If the user says `继续做题`, explicitly continue in `做题模式`.
 
 ### Mode routing
 - wrong mode → only use `wrong_questions.md`
 - favorites mode → only use `favorites.md`
 - custom mode → only use `custom_questions.md`
 - module mode / random mode → use system bank first, then unseen custom questions
+- `刷题模式` and `做题模式` share the same extraction, de-duplication, wrong-book, favorites, and custom-bank routing logic
+- the only default difference between `刷题模式` and `做题模式` is answer visibility and whether the user answers first before scoring
 
 ### De-duplication
 - By default, do not repeat questions already in `history.md` for the same module.
@@ -202,9 +242,11 @@ For each question, use this structure when possible:
 - Add to `custom_questions.md` only when the user explicitly asks to save a custom question.
 
 ### Answer visibility
-- In brushing mode, concise reference answers may be shown by default.
+- In brushing mode, concise reference answers should be shown by default.
+- In doing mode, answers should be hidden by default.
 - If the user asks to hide answers, suppress answers for the current round.
 - The user may later request the answer for a specific question.
+- In `做题模式`, after the user submits an answer, evaluate first, then give suggestions, and then reveal the reference answer only when requested or clearly helpful.
 
 ## Scoring Framework
 
@@ -215,8 +257,10 @@ When the user submits an answer or code, evaluate concisely on:
 - time complexity
 - space complexity
 - interview communication
+- implementation clarity for coding questions
 
 Record wrong or weak items into the module's wrong-question notebook when appropriate.
+In `做题模式`, scoring and suggestions should come before the reference answer unless the user explicitly requests the answer first.
 
 ## Bundled Resources
 
