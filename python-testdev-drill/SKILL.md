@@ -47,6 +47,9 @@ Use this skill when the user wants to:
 - For **all modules**, prefer **高频** questions first, then **中高频**, then **加分题**.
 - This high-frequency-first rule applies to both **刷题模式** and **做题模式**.
 - Any future newly created module must inherit the same high-frequency-first routing rule.
+- For hand-coding practice, keep two distinct routes:
+  - `Python基础手写代码题` should focus on 基础高频题 such as 列表、字符串、字典、集合、栈、双指针、哈希、排序.
+  - `logger/config/request/assert/base page/smart wait` style engineering implementation questions should be routed to a separate 测试开发工程手写题 line or related engineering modules, instead of being mixed into the basic hand-code mainline.
 
 ## Supported Drill Modes
 
@@ -231,6 +234,12 @@ For each question, use this structure when possible:
 4. 标签
 5. 难度
 6. 参考答案（if answers are visible in the current round）
+
+### Question brevity
+- By default, keep question prompts concise.
+- Prefer only one necessary example.
+- Add a second example only when the edge case truly needs clarification.
+- Prefer: 题目 + 关键要求 + 1 个示例, instead of long explanatory setup.
 
 ### Write-back rules
 - Any brushed question must be appended to `history.md`.
