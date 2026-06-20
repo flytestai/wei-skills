@@ -42,8 +42,10 @@ Use this skill when the user wants to:
 - If the user says `继续刷题`, force resume in **刷题模式**.
 - If the user says `继续做题`, force resume in **做题模式**.
 - If the user explicitly names a module, switch to that module.
-- Newly generated questions should avoid the module's brushed history first.
-- Questions brushed in any mode must be written into history.
+- For both **刷题模式** and **做题模式**, extraction must use the same de-duplication rules.
+- As long as the current pool still has unseen questions, do not repeat already asked questions.
+- Questions asked in any mode must be written into history.
+- Questions directly answered in `做题模式` must also count as already seen for future de-duplication.
 - For **all modules**, prefer **高频** questions first, then **中高频**, then **加分题**.
 - This high-frequency-first rule applies to both **刷题模式** and **做题模式**.
 - Any future newly created module must inherit the same high-frequency-first routing rule.
@@ -141,7 +143,8 @@ If the user says:
 
 Behavior:
 - provide the answer to the current question
-- add that question to the module's wrong-question notebook if appropriate
+- in `做题模式`, always treat that question as a weak point and add it to the module's wrong-question notebook
+- do not append duplicates if the same question is already in the wrong-question notebook
 - this rule applies especially to `做题模式`, because asking directly for the answer means the current question should be treated as a weak point
 
 ## Question Bank Layers
@@ -157,10 +160,13 @@ Each module may draw from these layers:
 ## Non-Repetition Rules
 
 Inside the same module:
-- avoid repeating brushed history first
-- avoid repeating directly answered questions first
-- prefer unseen system questions, then unseen custom questions
-- if the bank is exhausted, explicitly tell the user and ask whether repetition is allowed
+- `刷题模式` and `做题模式` must share one unified de-duplication pool
+- any question that has appeared before in `asked_questions`, `history_questions`, or `answer_given_questions` counts as already seen
+- default extraction must always prefer unseen questions first
+- do not repeat questions only because the interaction mode changed from `刷题` to `做题`, or from `做题` to `刷题`
+- prefer unseen system questions first, then unseen custom questions
+- wrong / favorites / custom review modes may repeat only inside their own review pool
+- if the normal module pool is exhausted, explicitly tell the user that new questions are exhausted and ask whether repetition is allowed
 
 ## Persistence Model
 
@@ -222,9 +228,11 @@ Examples:
 - the only default difference between `刷题模式` and `做题模式` is answer visibility and whether the user answers first before scoring
 
 ### De-duplication
-- By default, do not repeat questions already in `history.md` for the same module.
-- If the available pool is exhausted, explicitly ask whether repetition is allowed.
-- Wrong/favorites modes may repeat because the goal is review.
+- By default, do not repeat questions already seen in the same module, whether they were seen in `刷题模式` or `做题模式`.
+- Treat `asked_questions`, `history_questions`, and `answer_given_questions` as a unified seen-question set.
+- Switching modes must not reset or weaken de-duplication.
+- If the available normal pool is exhausted, explicitly ask whether repetition is allowed instead of silently reusing old questions.
+- Wrong/favorites modes may repeat because the goal is targeted review, but normal module extraction must stay de-duplicated.
 
 ### Output template
 For each question, use this structure when possible:
@@ -267,6 +275,11 @@ When the user submits an answer or code, evaluate concisely on:
 - space complexity
 - interview communication
 - implementation clarity for coding questions
+
+Scoring rule for `做题模式`:
+- if the answer score is below `8/10`, add the question to the module's wrong-question notebook
+- if the user directly requests the answer, also add the question to the module's wrong-question notebook
+- do not append duplicates if the same question is already in the wrong-question notebook
 
 Record wrong or weak items into the module's wrong-question notebook when appropriate.
 In `做题模式`, scoring and suggestions should come before the reference answer unless the user explicitly requests the answer first.
