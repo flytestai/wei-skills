@@ -45,6 +45,8 @@ Use this skill when the user wants to:
 - For both **刷题模式** and **做题模式**, extraction must use the same de-duplication rules.
 - As long as the current pool still has unseen questions, do not repeat already asked questions.
 - Questions asked in any mode must be written into history.
+- Question issuance itself must trigger automatic progress synchronization for the current module.
+- In both `刷题模式` and `做题模式`, once a question is issued, the skill should immediately update the current active module, current mode, last round question, and seen-question records.
 - Questions directly answered in `做题模式` must also count as already seen for future de-duplication.
 - For **all modules**, prefer **高频** questions first, then **中高频**, then **加分题**.
 - This high-frequency-first rule applies to both **刷题模式** and **做题模式**.
@@ -251,6 +253,8 @@ For each question, use this structure when possible:
 
 ### Write-back rules
 - Any brushed question must be appended to `history.md`.
+- In both `刷题模式` and `做题模式`, as soon as a question is issued, automatically sync the current module progress.
+- Automatic sync should update at least: `last_active_module`, `last_active_mode`, `last_batch_size`, `last_round_questions`, and the module's seen-question records.
 - Add to `wrong_questions.md` when:
   - the user answers incorrectly
   - the user directly asks for the answer
