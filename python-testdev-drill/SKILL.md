@@ -39,8 +39,9 @@ Use this skill when the user wants to:
   - **刷题模式** = give the question and show the reference answer by default
   - **做题模式** = give the question only, wait for the user's answer, then score and advise
 - If the user says `继续`, resume the last module, last drill mode, and last batch size.
-- If the user says `继续刷题`, force resume in **刷题模式**.
-- If the user says `继续做题`, force resume in **做题模式**.
+- If the user says `刷题` or `继续刷题`, explicitly enter **刷题模式**.
+- If the user says `做题` or `继续做题`, explicitly enter **做题模式**.
+- If the user says `做题模式`, explicitly enter **做题模式**.
 - If the user explicitly names a module, switch to that module.
 - For both **刷题模式** and **做题模式**, extraction must use the same de-duplication rules.
 - As long as the current pool still has unseen questions, do not repeat already asked questions.
@@ -218,8 +219,8 @@ Examples:
 ### Default extraction
 - If the user does not specify a mode, use the current module and prefer unseen questions first.
 - If the user only says `继续`, reuse the last module, last mode, and last batch size.
-- If the user says `继续刷题`, explicitly continue in `刷题模式`.
-- If the user says `继续做题`, explicitly continue in `做题模式`.
+- If the user says `刷题` or `继续刷题`, explicitly continue in `刷题模式`.
+- If the user says `做题`, `继续做题`, or `做题模式`, explicitly continue in `做题模式`.
 
 ### Mode routing
 - wrong mode → only use `wrong_questions.md`
