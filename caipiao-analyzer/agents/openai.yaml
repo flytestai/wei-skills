@@ -1,0 +1,4 @@
+interface:
+  display_name: "Caipiao Analyzer"
+  short_description: "Operate the full caipiao lottery platform end to end"
+  default_prompt: "Use $caipiao-analyzer to operate the flytestai/caipiao system end to end."
