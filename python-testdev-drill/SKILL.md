@@ -304,6 +304,7 @@ In `做题模式`, scoring and suggestions should come before the reference answ
 
 - Python基础手写代码题
 - 自动化测试题
+- Pytest框架
 - 测试开发面试题
 - Python编程基础理论面试题
 - 测试工程化与CI/CD
