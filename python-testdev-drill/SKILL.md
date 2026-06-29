@@ -143,11 +143,15 @@ Behavior:
 If the user says:
 - `给出答案`
 - `直接给答案`
+- `直接给出答案`
+- `看答案`
+- any equivalent wording that asks to reveal the answer before solving
 
 Behavior:
 - provide the answer to the current question
 - in `做题模式`, always treat that question as a weak point and add it to the module's wrong-question notebook
-- do not append duplicates if the same question is already in the wrong-question notebook
+- also append it to `answer_given_questions` so future extraction treats it as already seen
+- do not append duplicates if the same question is already in the wrong-question notebook or answer-given list
 - this rule applies especially to `做题模式`, because asking directly for the answer means the current question should be treated as a weak point
 
 ## Question Bank Layers
