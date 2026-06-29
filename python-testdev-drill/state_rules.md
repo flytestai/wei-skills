@@ -36,3 +36,4 @@
 4. Do not re-ask old questions unless the user explicitly asks for review.
 5. `性能测试面试题` and `中间件面试题` must be expanded only inside their own module banks, never appended under `自动化测试题`.
 6. `数据库面试题` must be expanded only inside its own module bank, never appended under `自动化测试题` or any other module.
+7. `Linux面试题` must be expanded only inside its own module bank, never appended under `自动化测试题` or any other module.

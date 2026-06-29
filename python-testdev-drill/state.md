@@ -386,6 +386,22 @@ current_batch_size: 1
 last_round_questions:
 last_round_results:
 
+## Module: Linux面试题
+
+module_name: Linux面试题
+completed_through: 0
+next_question: 1
+asked_questions:
+mistakes:
+answer_given_questions:
+history_questions:
+favorite_questions:
+custom_questions:
+current_mode: module
+current_batch_size: 1
+last_round_questions:
+last_round_results:
+
 ## Module: Pytest框架
 
 module_name: Pytest框架

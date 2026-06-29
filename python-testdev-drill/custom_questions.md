@@ -2170,4 +2170,606 @@
 - prompt: 如果要查询“张三”所在部门的所有其他员工，通常怎么设计 SQL？
 - answer: 常见做法是先通过子查询找出“张三”的 `department_id`，再用这个部门 ID 去查同部门其他员工，并在外层把“张三”自己排除掉。更严谨的做法是使用员工唯一 ID，而不是只用名字，因为重名会导致查询范围扩大。测试时也要特别验证是否错误包含了“张三”本人或其他重名员工带来的干扰。
 
+## Linux面试题
+
+### 自建题 1：ls 命令有什么用
+- tags: Linux, 命令, ls, 高频
+- difficulty: easy
+- prompt: `ls` 命令有什么作用？`ls -la` 常用于什么场景？
+- answer: `ls` 用于列出目录内容，`ls -la` 会显示所有文件（包括隐藏文件）的详细信息。测试环境里常用它快速查看目录结构、文件权限和日志文件是否存在。
+
+### 自建题 2：cd 命令有什么用
+- tags: Linux, 命令, cd
+- difficulty: easy
+- prompt: `cd` 命令的作用是什么？测试排查时为什么它很常用？
+- answer: `cd` 用于切换目录，例如进入日志目录、部署目录或配置目录。排查问题时，经常需要先进入对应路径再查看日志、配置或脚本。
+
+### 自建题 3：pwd 命令有什么用
+- tags: Linux, 命令, pwd
+- difficulty: easy
+- prompt: `pwd` 命令通常用来做什么？
+- answer: `pwd` 用于显示当前工作目录的完整路径。它常用于确认自己当前所在位置，避免在错误目录里执行命令。
+
+### 自建题 4：cat 命令有什么用
+- tags: Linux, 命令, cat
+- difficulty: easy
+- prompt: `cat` 命令常见用途是什么？
+- answer: `cat` 用于查看文件内容，适合快速查看配置文件、脚本或小日志文件。比如用它直接看 `config.yml` 的配置项是否正确。
+
+### 自建题 5：grep 命令有什么用
+- tags: Linux, 命令, grep, 日志排查
+- difficulty: easy
+- prompt: `grep` 命令为什么是测试排查日志时的高频命令？
+- answer: `grep` 用于文本搜索，特别适合在日志里查关键字，例如 `error`、`exception`、请求 ID、接口名等。像 `grep -n` 还能显示行号，方便快速定位问题位置。
+
+### 自建题 6：tail 命令有什么用
+- tags: Linux, 命令, tail, 日志监控
+- difficulty: easy
+- prompt: `tail` 和 `tail -f` 在测试环境里常怎么用？
+- answer: `tail` 用于查看文件尾部内容，而 `tail -f` 可以实时跟踪日志追加。测试联调和线上排查时，经常边操作系统边 `tail -f` 看日志输出。
+
+### 自建题 7：head 命令有什么用
+- tags: Linux, 命令, head
+- difficulty: easy
+- prompt: `head` 命令适合用在什么场景？
+- answer: `head` 用于查看文件开头几行内容，比如 `head -20 app.log` 查看日志前 20 行。它适合快速确认文件格式、头部配置或日志起始内容。
+
+### 自建题 8：cp 命令有什么用
+- tags: Linux, 命令, cp
+- difficulty: easy
+- prompt: `cp` 命令常见用法有哪些？
+- answer: `cp` 用于复制文件或目录，带 `-r` 可以递归复制目录。测试环境里常用它做配置备份、日志备份或复制脚本到目标目录。
+
+### 自建题 9：mv 命令有什么用
+- tags: Linux, 命令, mv
+- difficulty: easy
+- prompt: `mv` 命令除了移动文件，还常用于什么？
+- answer: `mv` 既可以移动文件，也常用于重命名文件。例如把旧日志改名备份，或把下载好的包改成统一命名格式。
+
+### 自建题 10：rm 命令有什么用
+- tags: Linux, 命令, rm, 风险操作
+- difficulty: easy
+- prompt: `rm -rf` 为什么是高风险命令？
+- answer: `rm` 用于删除文件或目录，`rm -rf` 会强制递归删除目标路径，风险非常高。测试环境里执行前必须反复确认路径，避免误删重要数据或部署目录。
+
+### 自建题 11：mkdir 命令有什么用
+- tags: Linux, 命令, mkdir
+- difficulty: easy
+- prompt: `mkdir -p` 和普通 `mkdir` 有什么区别？
+- answer: `mkdir` 用于创建目录，`mkdir -p` 可以一次性创建多级目录，即使父目录不存在也能自动补齐。测试时常用于快速准备日志目录、临时数据目录或脚本目录。
+
+### 自建题 12：rmdir 命令有什么用
+- tags: Linux, 命令, rmdir
+- difficulty: easy
+- prompt: `rmdir` 和 `rm -r` 的区别是什么？
+- answer: `rmdir` 只能删除空目录，而 `rm -r` 可以删除包含内容的目录。`rmdir` 更适合安全地清理空目录，不容易误删内容。
+
+### 自建题 13：touch 命令有什么用
+- tags: Linux, 命令, touch
+- difficulty: easy
+- prompt: `touch` 命令常见用途有哪些？
+- answer: `touch` 可以创建空文件，也可以更新文件的时间戳。测试时常用它快速生成占位文件、模拟输入文件或刷新文件修改时间。
+
+### 自建题 14：find 命令有什么用
+- tags: Linux, 命令, find, 查找文件
+- difficulty: easy
+- prompt: `find` 命令为什么在 Linux 排查中很常用？
+- answer: `find` 用于在指定路径下按名称、时间、大小等条件查找文件。比如查所有 `.log` 文件、查最新生成的包、查某个配置文件位置，排查效率很高。
+
+### 自建题 15：which 命令有什么用
+- tags: Linux, 命令, which
+- difficulty: easy
+- prompt: `which` 命令主要解决什么问题？
+- answer: `which` 用于查找可执行命令所在路径。测试环境里可以用来确认当前实际使用的是哪个 `python`、`java`、`mysql`，避免环境变量混乱。
+
+### 自建题 16：whereis 命令有什么用
+- tags: Linux, 命令, whereis
+- difficulty: easy
+- prompt: `whereis` 和 `which` 有什么区别？
+- answer: `which` 主要找当前可执行命令路径，而 `whereis` 会查找命令、源码、man 手册等相关文件位置。排查安装位置时，`whereis` 提供的信息更丰富。
+
+### 自建题 17：locate 命令有什么用
+- tags: Linux, 命令, locate
+- difficulty: easy
+- prompt: `locate` 为什么查文件通常比 `find` 更快？
+- answer: `locate` 基于文件索引数据库查找路径，所以通常比实时遍历目录的 `find` 更快。缺点是索引可能不是最新的，适合快速找配置文件或已知文件名。
+
+### 自建题 18：chmod 命令有什么用
+- tags: Linux, 命令, chmod, 权限
+- difficulty: easy
+- prompt: `chmod +x script.sh` 这条命令做了什么？
+- answer: 它给脚本增加执行权限，让脚本可以直接运行。测试环境里常见于部署脚本、启动脚本或自动化脚本无法执行时的处理。
+
+### 自建题 19：chown 命令有什么用
+- tags: Linux, 命令, chown, 权限
+- difficulty: easy
+- prompt: `chown` 命令通常在什么场景下使用？
+- answer: `chown` 用于修改文件或目录的所有者和所属组。测试环境里如果服务没权限读写日志、上传目录或配置目录，经常要检查并调整 owner。
+
+### 自建题 20：ps 命令有什么用
+- tags: Linux, 命令, ps, 进程
+- difficulty: easy
+- prompt: `ps aux | grep nginx` 这类命令通常用来做什么？
+- answer: `ps` 用于查看进程状态，配合 `grep` 常用来确认某个服务是否启动、启动了几个进程、对应 PID 是多少。是最基础的进程排查命令之一。
+
+### 自建题 21：top 命令有什么用
+- tags: Linux, 命令, top, 性能排查
+- difficulty: easy
+- prompt: `top` 在测试和性能排查中通常看什么？
+- answer: `top` 用于实时查看进程、CPU、内存等资源使用情况。测试时常用它判断系统是否打满、哪个进程最耗资源，以及负载是否异常。
+
+### 自建题 22：kill 命令有什么用
+- tags: Linux, 命令, kill, 进程
+- difficulty: easy
+- prompt: `kill -9` 为什么要谨慎使用？
+- answer: `kill` 用于终止指定 PID 的进程，`-9` 是强制杀死，进程来不及做清理操作。通常建议先尝试正常停止，再考虑 `kill -9`，避免造成文件损坏或状态不一致。
+
+### 自建题 23：killall 命令有什么用
+- tags: Linux, 命令, killall
+- difficulty: easy
+- prompt: `killall` 和 `kill` 的核心区别是什么？
+- answer: `kill` 是按 PID 杀进程，`killall` 是按进程名终止同名进程。它适合快速清理某类进程，但也更容易误伤多个同名实例，所以要谨慎使用。
+
+### 自建题 24：pkill 命令有什么用
+- tags: Linux, 命令, pkill
+- difficulty: easy
+- prompt: `pkill -f` 常见用途是什么？
+- answer: `pkill` 可以按模式匹配进程名或命令行，`-f` 会匹配完整命令。比如按脚本名杀掉某个后台 Python 任务，比单纯记 PID 更方便。
+
+### 自建题 25：bg 命令有什么用
+- tags: Linux, 命令, bg, 作业控制
+- difficulty: medium
+- prompt: `bg` 命令主要解决什么问题？
+- answer: `bg` 用于把暂停或前台作业放到后台继续运行。它属于 shell 作业控制命令，适合临时把一个正在执行的任务切到后台，不阻塞当前终端。
+
+### 自建题 26：fg 命令有什么用
+- tags: Linux, 命令, fg, 作业控制
+- difficulty: medium
+- prompt: `fg` 和 `bg` 是什么关系？
+- answer: `fg` 用于把后台作业切回前台运行，和 `bg` 相反。排查时如果某个任务放后台后想重新接管它，就可以用 `fg %1` 这类命令把它拉回前台。
+
+### 自建题 27：jobs 命令有什么用
+- tags: Linux, 命令, jobs, 作业控制
+- difficulty: medium
+- prompt: `jobs` 命令通常和哪些场景搭配使用？
+- answer: `jobs` 用于查看当前终端会话里的后台作业状态。它通常和 `bg`、`fg` 一起用，帮助确认哪些任务还在跑、对应的作业号是多少。
+
+### 自建题 28：nohup 命令有什么用
+- tags: Linux, 命令, nohup, 后台运行
+- difficulty: easy
+- prompt: 为什么长期运行任务经常会用 `nohup ... &`？
+- answer: 因为 `nohup` 可以让进程在终端退出后仍继续运行，配合 `&` 可直接放到后台。测试环境里常用于后台启动服务、长时间跑脚本、执行压测任务等。
+
+### 自建题 29：df 命令有什么用
+- tags: Linux, 命令, df, 磁盘
+- difficulty: easy
+- prompt: `df -h` 通常用来检查什么？
+- answer: `df -h` 用于查看磁盘分区的使用情况，`-h` 以易读格式显示。测试排查时经常先看磁盘是否满了，因为磁盘空间不足会引发日志写不进、数据库异常、服务启动失败等问题。
+
+### 自建题 30：du 命令有什么用
+- tags: Linux, 命令, du, 磁盘
+- difficulty: easy
+- prompt: `du -sh /var/log` 这类命令适合解决什么问题？
+- answer: `du` 用于查看目录或文件占用空间，`du -sh` 可以快速看某个目录总大小。常用于找出哪个日志目录、上传目录或缓存目录占空间过大。
+
+### 自建题 31：free 命令有什么用
+- tags: Linux, 命令, free, 内存
+- difficulty: easy
+- prompt: `free -h` 在测试环境排查里通常怎么看？
+- answer: `free -h` 用于查看内存和 swap 使用情况。它常用于判断机器是否存在内存紧张、缓存占用过高或 swap 被打满的问题。
+
+### 自建题 32：uname 命令有什么用
+- tags: Linux, 命令, uname
+- difficulty: easy
+- prompt: `uname -a` 可以帮助确认哪些信息？
+- answer: `uname -a` 可以查看内核版本、系统架构、主机名等系统信息。做环境确认、兼容性排查或提缺陷时，这些信息都很有用。
+
+### 自建题 33：uptime 命令有什么用
+- tags: Linux, 命令, uptime, 负载
+- difficulty: easy
+- prompt: `uptime` 除了看开机时长，还常看什么？
+- answer: `uptime` 除了显示系统运行时间，还会显示平均负载。测试和运维排查时，负载值能帮助快速判断机器是否处于高压状态。
+
+### 自建题 34：who 命令有什么用
+- tags: Linux, 命令, who
+- difficulty: easy
+- prompt: `who` 命令能看到什么？
+- answer: `who` 用于查看当前登录用户信息。多用户共享测试环境时，它有助于确认当前有哪些人在线、谁可能正在操作环境。
+
+### 自建题 35：w 命令有什么用
+- tags: Linux, 命令, w
+- difficulty: easy
+- prompt: `w` 和 `who` 有什么区别？
+- answer: `w` 不仅能看到当前登录用户，还能看到他们正在执行的活动命令和负载情况。相比 `who`，它更适合看“谁在这台机器上做什么”。
+
+### 自建题 36：last 命令有什么用
+- tags: Linux, 命令, last
+- difficulty: easy
+- prompt: `last` 命令通常在什么场景下使用？
+- answer: `last` 用于查看用户登录历史。排查环境被谁登录过、什么时候重启过、某账号是否近期使用过时，都可能用到它。
+
+### 自建题 37：history 命令有什么用
+- tags: Linux, 命令, history
+- difficulty: easy
+- prompt: `history` 对测试排查有什么帮助？
+- answer: `history` 用于查看当前 shell 的命令历史。它可以帮助回溯刚刚执行过哪些命令，避免重复输入，也有助于复盘一次排查过程。
+
+### 自建题 38：tar 命令有什么用
+- tags: Linux, 命令, tar, 压缩
+- difficulty: easy
+- prompt: `tar -czvf` 常见用途是什么？
+- answer: `tar` 常用于把多个文件或目录打包压缩成一个归档文件，`-czvf` 表示创建 gzip 压缩包。测试时常用来打包日志、备份目录或上传排查材料。
+
+### 自建题 39：gzip 命令有什么用
+- tags: Linux, 命令, gzip
+- difficulty: easy
+- prompt: `gzip` 命令和 `tar` 有什么不同？
+- answer: `gzip` 主要用于压缩单个文件，而 `tar` 常用于先打包再压缩多个文件。日志归档时，经常会看到 `.gz` 文件就是通过 `gzip` 生成的。
+
+### 自建题 40：gunzip 命令有什么用
+- tags: Linux, 命令, gunzip
+- difficulty: easy
+- prompt: 如果遇到 `.gz` 文件，通常如何解压？
+- answer: 常见方式是用 `gunzip` 解压，例如 `gunzip file.txt.gz`。排查历史日志、查看归档输出时经常会用到。
+
+### 自建题 41：zip 命令有什么用
+- tags: Linux, 命令, zip
+- difficulty: easy
+- prompt: `zip` 适合哪些压缩场景？
+- answer: `zip` 用于创建 zip 压缩包，适合跨平台共享文件。测试环境里如果要把日志、截图、脚本打包给其他同事或发到 Windows 环境，zip 很常见。
+
+### 自建题 42：unzip 命令有什么用
+- tags: Linux, 命令, unzip
+- difficulty: easy
+- prompt: 遇到 zip 压缩包时，Linux 下通常怎么解压？
+- answer: 一般使用 `unzip archive.zip`。它适合快速解压测试包、构建产物或别人传过来的附件文件。
+
+### 自建题 43：ssh 命令有什么用
+- tags: Linux, 命令, ssh, 远程登录
+- difficulty: easy
+- prompt: `ssh` 为什么是测试环境里最基础的远程命令之一？
+- answer: `ssh` 用于远程登录 Linux 主机，是进入测试环境、执行命令、排查日志、查看服务状态的基础入口。很多测试工作其实都是从 `ssh user@host` 开始的。
+
+### 自建题 44：scp 命令有什么用
+- tags: Linux, 命令, scp, 文件传输
+- difficulty: easy
+- prompt: `scp` 命令一般在什么场景下使用？
+- answer: `scp` 用于在本地和远程主机之间安全复制文件。测试时经常用它上传脚本、下载日志、传输构建包或配置文件。
+
+### 自建题 45：rsync 命令有什么用
+- tags: Linux, 命令, rsync, 同步
+- difficulty: medium
+- prompt: 为什么 `rsync` 常被认为比普通复制更适合做目录同步？
+- answer: `rsync` 支持增量同步，只传输变化部分，效率通常比直接整体复制更高。测试环境里同步日志、部署目录或备份文件时很常用。
+
+### 自建题 46：ping 命令有什么用
+- tags: Linux, 命令, ping, 网络
+- difficulty: easy
+- prompt: `ping` 命令最常用于确认什么？
+- answer: `ping` 用于测试与目标主机的网络连通性和延迟情况。排查接口超时、服务不可达、环境网络问题时，`ping` 通常是第一步。
+
+### 自建题 47：traceroute 命令有什么用
+- tags: Linux, 命令, traceroute, 网络路径
+- difficulty: medium
+- prompt: `traceroute` 相比 `ping` 更适合解决什么问题？
+- answer: `traceroute` 用于查看数据包经过的网络路径，适合排查网络链路在哪一跳出现问题。`ping` 只能告诉你通不通，`traceroute` 更像是在查“卡在哪”。
+
+### 自建题 48：netstat 命令有什么用
+- tags: Linux, 命令, netstat, 端口
+- difficulty: easy
+- prompt: `netstat -tuln` 常用来做什么？
+- answer: `netstat` 用于查看网络状态、连接和监听端口。`netstat -tuln` 很适合快速确认服务是否在监听某个端口，是端口排查的经典命令。
+
+### 自建题 49：ss 命令有什么用
+- tags: Linux, 命令, ss, 端口
+- difficulty: easy
+- prompt: 为什么现在很多场景更推荐 `ss` 而不是 `netstat`？
+- answer: `ss` 用于查看套接字和网络连接统计，通常速度更快、信息更现代，所以很多系统里更推荐它来替代 `netstat`。比如 `ss -tuln` 就常用来查监听端口。
+
+### 自建题 50：ifconfig 命令有什么用
+- tags: Linux, 命令, ifconfig, 网络接口
+- difficulty: easy
+- prompt: `ifconfig` 命令通常看什么？
+- answer: `ifconfig` 用于查看或配置网络接口信息，比如 IP 地址、广播地址、网卡状态等。虽然新系统更多推荐 `ip` 命令，但它仍然是很多人熟悉的经典命令。
+
+### 自建题 51：ip 命令有什么用
+- tags: Linux, 命令, ip, 网络接口
+- difficulty: easy
+- prompt: 为什么现在很多场景会用 `ip addr show` 替代 `ifconfig`？
+- answer: 因为 `ip` 命令功能更全，适合查看和操作地址、路由、网卡等信息，是更现代的网络管理工具。`ip addr show` 常用于查看当前所有网络接口及其 IP。
+
+### 自建题 52：route 命令有什么用
+- tags: Linux, 命令, route, 路由表
+- difficulty: medium
+- prompt: `route -n` 常用于排查什么？
+- answer: `route -n` 用于查看路由表，适合排查机器为什么访问不到某个网段、默认网关是否正确、路由是否配置异常等网络问题。
+
+### 自建题 53：hostname 命令有什么用
+- tags: Linux, 命令, hostname
+- difficulty: easy
+- prompt: `hostname` 命令在测试环境里有什么价值？
+- answer: `hostname` 用于显示或设置主机名。多台机器环境里，确认自己当前到底连的是哪台机器非常重要，避免在错误节点上排查或操作。
+
+### 自建题 54：curl 命令有什么用
+- tags: Linux, 命令, curl, HTTP
+- difficulty: easy
+- prompt: `curl -I` 和普通 `curl` 常见用途是什么？
+- answer: `curl` 用于和 URL 交互，测试 HTTP/HTTPS 请求非常方便。`curl -I` 只获取响应头，适合快速验证接口是否可达、状态码是否正确、网关是否正常。
+
+### 自建题 55：wget 命令有什么用
+- tags: Linux, 命令, wget, 下载
+- difficulty: easy
+- prompt: `wget` 和 `curl` 有什么常见使用区别？
+- answer: `wget` 更偏向下载文件，适合拉取安装包、测试数据包或构建产物；`curl` 更偏向接口交互和调试。测试环境里两者都很常见，但用途侧重点不同。
+
+### 自建题 56：lynx 命令有什么用
+- tags: Linux, 命令, lynx, 文本浏览器
+- difficulty: medium
+- prompt: `lynx` 这种文本浏览器可能在什么场景下有用？
+- answer: `lynx` 可以在纯终端环境中以文本方式浏览网页。对于没有图形界面的服务器，临时查看页面输出或文档内容时会比较方便。
+
+### 自建题 57：telnet 命令有什么用
+- tags: Linux, 命令, telnet, 端口测试
+- difficulty: easy
+- prompt: 为什么测试工程师有时会用 `telnet host port`？
+- answer: 因为它可以快速验证某个主机某个端口是否能连通。虽然 `telnet` 本身是远程登录协议，但在很多排查场景里更常被拿来做简单端口连通性测试。
+
+### 自建题 58：nc 命令有什么用
+- tags: Linux, 命令, nc, 端口测试
+- difficulty: easy
+- prompt: `nc -zv` 适合排查什么问题？
+- answer: `nc` 也叫 netcat，是非常灵活的网络工具。`nc -zv host port` 常用于快速测试端口是否开放，相比 `telnet` 更轻量，也更适合脚本化使用。
+
+### 自建题 59：ssh-keygen 命令有什么用
+- tags: Linux, 命令, ssh-keygen, SSH
+- difficulty: easy
+- prompt: `ssh-keygen` 一般在什么场景下用？
+- answer: `ssh-keygen` 用于生成 SSH 密钥对，方便后续做免密登录。多台测试机频繁连接时，配置 SSH key 可以明显提升效率。
+
+### 自建题 60：ssh-copy-id 命令有什么用
+- tags: Linux, 命令, ssh-copy-id, SSH
+- difficulty: easy
+- prompt: `ssh-copy-id` 的作用是什么？
+- answer: 它用于把本机公钥复制到远程主机，从而实现免密 SSH 登录。测试环境里经常用于批量部署、自动化脚本执行或多节点巡检。
+
+### 自建题 61：sed 命令有什么用
+- tags: Linux, 命令, sed, 文本处理
+- difficulty: medium
+- prompt: `sed` 命令在测试环境里最常用来做什么？
+- answer: `sed` 是流编辑器，常用于替换文本、删除行、提取行等批处理操作。比如快速替换配置项、修改脚本中的变量值、处理日志文本等。
+
+### 自建题 62：awk 命令有什么用
+- tags: Linux, 命令, awk, 文本处理
+- difficulty: medium
+- prompt: `awk` 为什么常被用来处理结构化文本？
+- answer: `awk` 很适合按列处理文本，比如按空格、冒号等分隔符提取指定字段。测试和运维排查时，分析日志、统计命令输出、抽取关键列时非常高效。
+
+### 自建题 63：cut 命令有什么用
+- tags: Linux, 命令, cut
+- difficulty: easy
+- prompt: `cut -d: -f1 /etc/passwd` 这类命令体现了 `cut` 的什么能力？
+- answer: `cut` 用于按分隔符提取指定字段。像 `/etc/passwd` 这种冒号分隔文件，常用 `cut` 快速取用户名、UID 等某一列信息。
+
+### 自建题 64：paste 命令有什么用
+- tags: Linux, 命令, paste
+- difficulty: easy
+- prompt: `paste` 命令适合什么场景？
+- answer: `paste` 用于把多个文件按行合并输出。它适合做简单数据拼接，比如把两列结果临时合成一个对照表。
+
+### 自建题 65：sort 命令有什么用
+- tags: Linux, 命令, sort
+- difficulty: easy
+- prompt: `sort` 命令通常如何配合其他命令使用？
+- answer: `sort` 用于对文本内容排序，常配合 `uniq`、`grep`、`awk` 一起做日志统计、去重计数、结果整理等工作。
+
+### 自建题 66：uniq 命令有什么用
+- tags: Linux, 命令, uniq
+- difficulty: easy
+- prompt: `uniq` 为什么经常和 `sort` 一起出现？
+- answer: 因为 `uniq` 只能处理相邻重复行，所以通常要先 `sort` 再 `uniq` 才能得到全局去重效果。日志分析和数据统计时这种组合很常见。
+
+### 自建题 67：wc 命令有什么用
+- tags: Linux, 命令, wc
+- difficulty: easy
+- prompt: `wc -l` 在测试排查里经常统计什么？
+- answer: `wc` 用于统计文件的行数、单词数、字符数，其中 `wc -l` 最常用于统计日志行数、结果条数、匹配数量等。
+
+### 自建题 68：diff 命令有什么用
+- tags: Linux, 命令, diff, 文件对比
+- difficulty: easy
+- prompt: `diff` 命令通常用来比较什么？
+- answer: `diff` 用于比较两个文件的差异。测试环境里常用于对比两份配置、两个接口结果样本、两次导出数据或两个版本脚本之间的变化。
+
+### 自建题 69：patch 命令有什么用
+- tags: Linux, 命令, patch
+- difficulty: medium
+- prompt: `patch -p1 < patchfile` 主要解决什么问题？
+- answer: `patch` 用于根据补丁文件把改动应用到代码或文本上。它在代码修复、版本差异同步或快速应用别人给的修改时很有用。
+
+### 自建题 70：ln 命令有什么用
+- tags: Linux, 命令, ln, 软链接
+- difficulty: easy
+- prompt: `ln -s` 创建的是什么？为什么测试环境里常用？
+- answer: `ln -s` 创建的是软链接，相当于给原文件或目录建一个快捷入口。测试环境里常用于统一路径、切换版本目录、快速引用配置或脚本。
+
+### 自建题 71：readlink 命令有什么用
+- tags: Linux, 命令, readlink
+- difficulty: easy
+- prompt: `readlink` 适合查什么问题？
+- answer: `readlink` 用于查看符号链接实际指向的路径。比如排查 `/usr/bin/python` 最终指向哪个版本时就很实用。
+
+### 自建题 72：stat 命令有什么用
+- tags: Linux, 命令, stat
+- difficulty: easy
+- prompt: `stat` 和 `ls -l` 相比有什么优势？
+- answer: `stat` 可以显示更详细的文件状态信息，例如权限、大小、inode、访问时间、修改时间、变更时间等。排查文件是否被更新、何时变更时很有帮助。
+
+### 自建题 73：file 命令有什么用
+- tags: Linux, 命令, file
+- difficulty: easy
+- prompt: `file document.pdf` 这类命令通常用于什么？
+- answer: `file` 用于判断文件类型。测试环境里遇到扩展名不可信、压缩包异常、导出文件格式不确定时，常用它快速确认真实类型。
+
+### 自建题 74：md5sum 命令有什么用
+- tags: Linux, 命令, md5sum, 校验
+- difficulty: easy
+- prompt: 为什么下载或传输文件后常会校验 `md5sum`？
+- answer: `md5sum` 用于计算文件 MD5 校验值，可用于确认文件在下载、拷贝、传输过程中是否发生损坏或被替换。虽然 MD5 不适合强安全场景，但做完整性校验仍很常见。
+
+### 自建题 75：sha256sum 命令有什么用
+- tags: Linux, 命令, sha256sum, 校验
+- difficulty: easy
+- prompt: `sha256sum` 和 `md5sum` 有什么区别？
+- answer: 两者都能做文件校验，但 `sha256sum` 在安全性和碰撞抗性上更强。现在很多安装包、镜像文件更常提供 SHA256 值给用户核对。
+
+### 自建题 76：date 命令有什么用
+- tags: Linux, 命令, date
+- difficulty: easy
+- prompt: `date` 在测试环境里除了看时间，还有什么价值？
+- answer: `date` 可用于查看或格式化当前系统时间。排查日志时间、比对时区、确认定时任务触发点时，经常要先看机器时间是否准确。
+
+### 自建题 77：cal 命令有什么用
+- tags: Linux, 命令, cal
+- difficulty: easy
+- prompt: `cal` 命令虽简单，但可能在什么场景下有用？
+- answer: `cal` 用于显示日历。虽然它不是高频排查命令，但在核对日期、回看排期、定位某天发生的问题时会有点用。
+
+### 自建题 78：time 命令有什么用
+- tags: Linux, 命令, time, 性能
+- difficulty: easy
+- prompt: `time ls -la` 这类命令体现了 `time` 的什么作用？
+- answer: `time` 用于测量命令执行耗时。测试时可以用它粗略评估脚本、接口调用命令或批处理任务执行时间。
+
+### 自建题 79：timeout 命令有什么用
+- tags: Linux, 命令, timeout
+- difficulty: easy
+- prompt: `timeout 5s ping example.com` 这类写法能解决什么问题？
+- answer: `timeout` 用于给命令设置最长执行时间，超时就终止。它非常适合防止网络命令、脚本、巡检命令长时间卡住。
+
+### 自建题 80：watch 命令有什么用
+- tags: Linux, 命令, watch, 实时监控
+- difficulty: easy
+- prompt: `watch -n 1 'date'` 这种用法适合类比到哪些测试排查场景？
+- answer: `watch` 可以定期重复执行命令并实时刷新输出。比如每秒看一次磁盘、连接数、队列长度、文件变化，在排查动态问题时很方便。
+
+### 自建题 81：at 命令有什么用
+- tags: Linux, 命令, at, 定时任务
+- difficulty: medium
+- prompt: `at` 和 `crontab` 在定时任务场景下有什么区别？
+- answer: `at` 更适合执行一次性的定时任务，比如“今晚 12 点执行某条命令”；`crontab` 更适合周期性任务。测试环境里偶尔会用 `at` 做一次性延迟任务。
+
+### 自建题 82：crontab 命令有什么用
+- tags: Linux, 命令, crontab, 定时任务
+- difficulty: easy
+- prompt: `crontab -l` 为什么是排查定时任务的第一步之一？
+- answer: `crontab -l` 用于查看当前用户的定时任务列表。排查“任务有没有配”“是不是这个用户在跑”“时间表达式对不对”时都很有帮助。
+
+### 自建题 83：systemctl 命令有什么用
+- tags: Linux, 命令, systemctl, 服务管理
+- difficulty: easy
+- prompt: `systemctl status nginx` 这类命令在测试环境里通常用来做什么？
+- answer: `systemctl` 用于控制 systemd 管理的服务，比如查看状态、启动、停止、重启服务。测试环境里查服务是否活着、启动失败原因是什么，常常会先看它。
+
+### 自建题 84：service 命令有什么用
+- tags: Linux, 命令, service, 服务管理
+- difficulty: easy
+- prompt: `service nginx restart` 这种命令和 `systemctl` 有什么关系？
+- answer: `service` 是较传统的服务管理方式，在一些系统上仍然可用。它和 `systemctl` 目标相似，都是用于启动、停止、重启服务，只是底层机制和系统版本相关。
+
+### 自建题 85：journalctl 命令有什么用
+- tags: Linux, 命令, journalctl, 日志
+- difficulty: medium
+- prompt: `journalctl -u nginx` 主要用于查什么？
+- answer: `journalctl` 用于查看 systemd 管理的系统日志，`-u nginx` 表示看 nginx 服务日志。服务启动失败、崩溃重启、权限异常时经常要看这里。
+
+### 自建题 86：dmesg 命令有什么用
+- tags: Linux, 命令, dmesg, 内核日志
+- difficulty: medium
+- prompt: `dmesg | grep error` 适合排查哪类问题？
+- answer: `dmesg` 用于查看内核消息，常用于排查硬件、驱动、磁盘、内存、系统级错误。应用层问题不一定看得到，但系统底层异常常能在这里找到线索。
+
+### 自建题 87：lsof 命令有什么用
+- tags: Linux, 命令, lsof, 端口排查
+- difficulty: easy
+- prompt: `lsof -i :80` 常用于解决什么问题？
+- answer: `lsof` 用于列出打开文件和网络连接。`lsof -i :80` 常用于查是谁占用了 80 端口，定位端口冲突、僵尸服务或异常监听进程非常高效。
+
+### 自建题 88：strace 命令有什么用
+- tags: Linux, 命令, strace, 系统调用
+- difficulty: hard
+- prompt: `strace` 在排查程序问题时为什么很强？
+- answer: `strace` 能跟踪进程的系统调用和信号，适合排查程序卡在哪、读写了什么文件、访问了哪些系统资源。它对深入分析“程序为什么不工作”非常有帮助，但输出信息也比较底层。
+
+### 自建题 89：vmstat 命令有什么用
+- tags: Linux, 命令, vmstat, 性能监控
+- difficulty: medium
+- prompt: `vmstat 1` 通常用来观察哪些系统指标？
+- answer: `vmstat` 主要看虚拟内存、进程状态、CPU、上下文切换、I/O 等系统整体指标。它适合做快速系统体检，判断是否有内存、CPU 或 I/O 异常。
+
+### 自建题 90：iostat 命令有什么用
+- tags: Linux, 命令, iostat, 磁盘IO
+- difficulty: medium
+- prompt: `iostat -x 1` 最适合排查什么问题？
+- answer: `iostat` 用于查看 CPU 和磁盘 I/O 统计，`-x` 会显示更详细的扩展指标。排查磁盘利用率高、I/O 等待长、数据库或日志写入慢时很常用。
+
+### 自建题 91：mpstat 命令有什么用
+- tags: Linux, 命令, mpstat, CPU
+- difficulty: medium
+- prompt: `mpstat` 和 `top` 都看 CPU，它更适合什么场景？
+- answer: `mpstat` 更适合看多核 CPU 各核的使用情况。排查 CPU 负载不均、单核打满、并发任务分布不均时比总览型命令更直观。
+
+### 自建题 92：pidstat 命令有什么用
+- tags: Linux, 命令, pidstat, 进程监控
+- difficulty: medium
+- prompt: `pidstat -u 1` 这种命令适合看什么？
+- answer: `pidstat` 用于查看进程级别的 CPU、内存、I/O 等统计信息。排查“到底哪个进程持续吃资源”时，它比只看一眼 `top` 更适合做持续观察。
+
+### 自建题 93：sar 命令有什么用
+- tags: Linux, 命令, sar, 系统活动
+- difficulty: medium
+- prompt: `sar` 命令为什么适合做历史性能分析？
+- answer: `sar` 可以查看系统活动报告，包括 CPU、内存、网络、I/O 等指标，而且很多环境会保留历史数据。它适合分析“某个时间段系统到底发生了什么”。
+
+### 自建题 94：ulimit 命令有什么用
+- tags: Linux, 命令, ulimit, 资源限制
+- difficulty: medium
+- prompt: `ulimit -a` 排查时为什么很重要？
+- answer: `ulimit` 用于查看或设置 shell 资源限制，比如最大打开文件数、进程数、栈大小等。很多“连接不够用”“文件句柄耗尽”的问题，最后都会查到这里。
+
+### 自建题 95：env 命令有什么用
+- tags: Linux, 命令, env, 环境变量
+- difficulty: easy
+- prompt: `env` 命令在环境排查里最常看什么？
+- answer: `env` 用于查看当前环境变量。测试环境里经常要确认 `JAVA_HOME`、`PATH`、代理配置、应用配置变量是否正确生效。
+
+### 自建题 96：export 命令有什么用
+- tags: Linux, 命令, export, 环境变量
+- difficulty: easy
+- prompt: `export PATH=$PATH:/new/path` 这种操作的本质是什么？
+- answer: `export` 用于设置当前 shell 会话中的环境变量，并让子进程可见。常见场景包括临时补 PATH、设置应用配置变量、切换测试环境参数。
+
+### 自建题 97：unset 命令有什么用
+- tags: Linux, 命令, unset
+- difficulty: easy
+- prompt: `unset VARIABLE` 主要解决什么问题？
+- answer: `unset` 用于删除环境变量或 shell 函数。排查环境变量污染、临时变量冲突、旧配置残留时会用到它。
+
+### 自建题 98：alias 命令有什么用
+- tags: Linux, 命令, alias
+- difficulty: easy
+- prompt: `alias ll='ls -alF'` 体现了什么能力？
+- answer: `alias` 用于给命令创建别名，方便把高频命令简化。比如把 `ls -alF` 简化成 `ll`，提升日常操作效率。
+
+### 自建题 99：unalias 命令有什么用
+- tags: Linux, 命令, unalias
+- difficulty: easy
+- prompt: `unalias ll` 这类操作通常用于什么场景？
+- answer: `unalias` 用于删除之前定义的命令别名。排查某个命令行为异常、怀疑被 alias 改写时，经常需要先取消别名确认真实命令行为。
+
+### 自建题 100：source 命令有什么用
+- tags: Linux, 命令, source, shell配置
+- difficulty: easy
+- prompt: 为什么修改完 `.bashrc` 后经常要执行 `source ~/.bashrc`？
+- answer: `source` 用于在当前 shell 中执行脚本文件。修改 `.bashrc`、环境变量或 alias 后，用 `source ~/.bashrc` 可以立即生效，而不用重新登录终端。
+
 ## 测试工程化与CI/CD

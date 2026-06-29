@@ -30,6 +30,7 @@ This skill is no longer just a one-question practice flow. It is a **persistent 
 - 性能测试面试题
 - 中间件面试题
 - 数据库面试题
+- Linux面试题
 
 ## Use This Skill When
 
@@ -59,6 +60,7 @@ Use this skill when the user wants to:
 - If the user says `性能测试模块` / `性能测试面试题` / `刷性能测试` / `做性能测试`, route to `性能测试面试题`.
 - If the user says `中间件模块` / `中间件面试题` / `刷中间件` / `做中间件`, route to `中间件面试题`.
 - If the user says `数据库模块` / `数据库面试题` / `刷数据库` / `做数据库`, route to `数据库面试题`.
+- If the user says `Linux模块` / `Linux面试题` / `刷Linux` / `做Linux` / `刷Linux命令` / `做Linux命令`, route to `Linux面试题`.
 - For both **刷题模式** and **做题模式**, extraction must use the same de-duplication rules.
 - As long as the current pool still has unseen questions, do not repeat already asked questions.
 - Questions asked in any mode must be written into history.
@@ -73,6 +75,7 @@ Use this skill when the user wants to:
   - `logger/config/request/assert/base page/smart wait` style engineering implementation questions should be routed to a separate 测试开发工程手写题 line or related engineering modules, instead of being mixed into the basic hand-code mainline.
 - `自动化测试题` should focus on automation interview questions only; do not merge `性能测试面试题` or `中间件面试题` into it.
 - `数据库面试题` is also an independent first-class module and must not be merged into `自动化测试题` or other modules.
+- `Linux面试题` is also an independent first-class module and must not be merged into `自动化测试题` or other modules.
 
 ## Supported Drill Modes
 

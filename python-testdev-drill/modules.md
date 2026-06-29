@@ -84,3 +84,4 @@ Any newly created module must inherit the same routing rule:
 - every brushed question must be written into module history
 - repeated extraction should be avoided when history already contains the question
 - if all questions are exhausted, say so explicitly
+- `Linux面试题`
