@@ -19,6 +19,18 @@ This skill is no longer just a one-question practice flow. It is a **persistent 
 - favorites review
 - custom question bank
 
+## Current Seed Modules
+- Python基础手写代码题
+- Python编程基础理论面试题
+- Python高阶编程
+- 自动化测试题
+- Pytest框架
+- 测试开发面试题
+- 测试工程化与CI/CD
+- 性能测试面试题
+- 中间件面试题
+- 数据库面试题
+
 ## Use This Skill When
 
 Use this skill when the user wants to:
@@ -43,6 +55,10 @@ Use this skill when the user wants to:
 - If the user says `做题` or `继续做题`, explicitly enter **做题模式**.
 - If the user says `做题模式`, explicitly enter **做题模式**.
 - If the user explicitly names a module, switch to that module.
+- `性能测试面试题` and `中间件面试题` are independent first-class modules and must not be routed into `自动化测试题`.
+- If the user says `性能测试模块` / `性能测试面试题` / `刷性能测试` / `做性能测试`, route to `性能测试面试题`.
+- If the user says `中间件模块` / `中间件面试题` / `刷中间件` / `做中间件`, route to `中间件面试题`.
+- If the user says `数据库模块` / `数据库面试题` / `刷数据库` / `做数据库`, route to `数据库面试题`.
 - For both **刷题模式** and **做题模式**, extraction must use the same de-duplication rules.
 - As long as the current pool still has unseen questions, do not repeat already asked questions.
 - Questions asked in any mode must be written into history.
@@ -55,6 +71,8 @@ Use this skill when the user wants to:
 - For hand-coding practice, keep two distinct routes:
   - `Python基础手写代码题` should focus on 基础高频题 such as 列表、字符串、字典、集合、栈、双指针、哈希、排序.
   - `logger/config/request/assert/base page/smart wait` style engineering implementation questions should be routed to a separate 测试开发工程手写题 line or related engineering modules, instead of being mixed into the basic hand-code mainline.
+- `自动化测试题` should focus on automation interview questions only; do not merge `性能测试面试题` or `中间件面试题` into it.
+- `数据库面试题` is also an independent first-class module and must not be merged into `自动化测试题` or other modules.
 
 ## Supported Drill Modes
 
@@ -143,15 +161,11 @@ Behavior:
 If the user says:
 - `给出答案`
 - `直接给答案`
-- `直接给出答案`
-- `看答案`
-- any equivalent wording that asks to reveal the answer before solving
 
 Behavior:
 - provide the answer to the current question
 - in `做题模式`, always treat that question as a weak point and add it to the module's wrong-question notebook
-- also append it to `answer_given_questions` so future extraction treats it as already seen
-- do not append duplicates if the same question is already in the wrong-question notebook or answer-given list
+- do not append duplicates if the same question is already in the wrong-question notebook
 - this rule applies especially to `做题模式`, because asking directly for the answer means the current question should be treated as a weak point
 
 ## Question Bank Layers

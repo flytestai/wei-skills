@@ -17,11 +17,10 @@
 ## After User Says `给出答案`
 
 1. Provide the standard answer.
-2. In `做题模式`, always append the current question to `mistakes` without duplicate insertion.
-3. Append the current question to `answer_given_questions` without duplicate insertion.
+2. Append the current question to `mistakes`.
+3. Append the current question to `answer_given_questions`.
 4. Treat the current question as already seen for all future de-duplication in both `刷题模式` and `做题模式`.
 5. Move `next_question` forward.
-6. This rule applies to equivalent direct-answer wording such as `直接给出答案`, `直接给答案`, `看答案`, or any explicit request to reveal the answer before solving.
 
 ## After Module Switch
 
@@ -35,3 +34,5 @@
 2. Keep existing question numbers stable.
 3. Update the module snapshot.
 4. Do not re-ask old questions unless the user explicitly asks for review.
+5. `性能测试面试题` and `中间件面试题` must be expanded only inside their own module banks, never appended under `自动化测试题`.
+6. `数据库面试题` must be expanded only inside its own module bank, never appended under `自动化测试题` or any other module.

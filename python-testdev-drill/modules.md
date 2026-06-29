@@ -59,6 +59,19 @@ For special modes:
 - favorites mode → favorites bank first; if frequency info exists, still prefer 高频 within favorites
 - custom mode → custom-question bank first; if frequency info exists, still prefer 高频 within custom questions
 
+## Active Modules
+
+- `Python基础手写代码题`
+- `Python编程基础理论面试题`
+- `Python高阶编程`
+- `自动化测试题`
+- `Pytest框架`
+- `测试开发面试题`
+- `测试工程化与CI/CD`
+- `性能测试面试题`
+- `中间件面试题`
+- `数据库面试题`
+
 ## Future Module Rule
 
 Any newly created module must inherit the same routing rule:

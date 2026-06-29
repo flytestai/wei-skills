@@ -18,6 +18,27 @@
 - count_words
 - second_largest
 - fizz_buzz
+- group_anagrams
+- bubble_sort
+- quick_sort
+- count_characters
+- is_valid_anagram
+- reverse_each_word
+- flatten_list_once
+- group_by_length
+- is_palindrome_two_pointers
+- merge_two_sorted_lists
+- move_zeros
+- two_sum_sorted
+- reverse_chars
+- merge_intervals_simple
+- max_area
+- sort_colors_simple
+- top_k_frequent_simple
+
+## Python高阶编程
+- find_first_non_repeated_char
+- merge_intervals
 
 ## 自动化测试题
 
