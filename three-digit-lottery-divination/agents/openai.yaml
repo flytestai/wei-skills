@@ -1,0 +1,4 @@
+interface:
+  display_name: "三位数彩票梅花推演"
+  short_description: "从官方接口获取排列三和福彩3D历史数据并推演下一期号码"
+  default_prompt: "Use $three-digit-lottery-divination to fetch a specified number of 排列三 or 福彩3D draws and derive one entertainment-only next-draw number."
