@@ -103,8 +103,44 @@
 - answer: hook 可以理解成 Pytest 在执行生命周期里预留的扩展点。比如用例收集前后、执行前后、报告生成阶段，都可以通过 hook 插入自定义逻辑。它适合做结果增强、失败截图、日志补充、动态改报告、执行控制等。面试里不一定要背很多 hook 名字，但要说清楚：hook 本质是扩展执行流程的机制。
 
 ### 15. fixture_best_practice
-- tags: Pytest, 最佳实践, 工程化
+- tags: Pytest, fixture, 最佳实践
+- difficulty: medium
+- frequency: 中高频
+- prompt: fixture 使用上有哪些最佳实践？
+- answer: 核心几条：命名用「动作/状态」而非「数据名」，比如 `clean_db` 比 `db` 清晰；能复用的一律放 conftest.py，避免跨文件 import；scope 往大放（能用 session 不用 function），但要确认测试之间没有副作用污染；清理逻辑放 yield 之后而不是每个用例自己删。收尾可以提一句：fixture 是 Pytest 的灵魂，用好了用例干净、用烂了比 setup/tearDown 还难维护，关键就在「谁依赖谁、什么时候清理」想清楚。
+
+### 16. conftest_role_advanced
+- tags: Pytest, conftest, 工程化
 - difficulty: hard
 - frequency: 加分题
-- prompt: 在大型项目里设计 fixture 体系时，你觉得最容易踩的坑是什么？
-- answer: 最常见的坑有三个：第一，fixture 过度耦合，依赖链太深；第二，scope 设太大导致用例相互污染；第三，autouse 滥用导致执行逻辑不透明。比较好的做法是：按资源层次拆分、明确命名、控制作用域、把公共能力沉淀到 `conftest.py`，同时减少隐式副作用。
+- prompt: 多个目录都有 conftest.py 时，fixture 怎么生效？
+- answer: conftest.py 的作用域是「它所在的目录及其子目录」，不需要 import 就能被范围内的用例使用。多个 conftest 是叠加关系：子目录的 conftest 补充（而不是覆盖）父目录的，用例能同时用到整条目录链上的所有 fixture。这个特性常用来分层：根 conftest 放全局配置（环境地址、driver），api/ 目录放接口测试专用 fixture，ui/ 目录放登录态、浏览器 fixture，互不干扰。再深一层：根 conftest 里可以定义 hook（如 pytest_addoption 加命令行参数）让全局生效。答出「就近叠加 + 分层设计」就到位了。
+
+### 17. fixture_override_resolution
+- tags: Pytest, fixture, 进阶
+- difficulty: hard
+- frequency: 加分题
+- prompt: 父目录和子目录定义了同名 fixture，用例用的是哪个？
+- answer: 规则是「就近覆盖」：离用例越近的定义优先，子目录 conftest 的同名 fixture 会覆盖父目录的，用例文件里定义的又覆盖 conftest 的。另一个维度是参数化覆盖：用例上 `@pytest.mark.usefixtures` 显式指定、或 fixture 通过 `request.getfixturevalue` 动态取，都能改变解析结果。这个机制的典型用法是「默认实现 + 特殊目录覆盖」：根 conftest 定义 `base_url` 指向测试环境，某个调试目录覆盖成 localhost。回答时强调一句：同名覆盖是隐式的，团队协作里建议用不同名字或参数化来表达差异，可读性更好。
+
+### 18. pytest_generate_tests
+- tags: Pytest, hook, 参数化
+- difficulty: hard
+- frequency: 加分题
+- prompt: 除了 @pytest.mark.parametrize，还有什么动态参数化的方式？
+- answer: 有，`pytest_generate_tests` 这个收集期 hook。它在用例收集阶段被调用，能在代码里读文件、查数据库、按环境变量动态算出参数，然后 `metafunc.parametrize("case", data)` 注入。和 parametrize 装饰器的区别：装饰器的参数是写死在代码里的静态列表，hook 是运行收集时才生成的动态数据。典型场景：用例数据全部外置到 Excel/YAML，测试函数只有一行，参数由 hook 读文件灌进去——数据驱动框架的标准做法。再补一句：hook 在收集期跑，所以别在里面做太重的操作，会影响整个收集速度。
+
+### 19. pytest_allure_integration
+- tags: Pytest, allure, 报告
+- difficulty: medium
+- frequency: 中高频
+- prompt: Pytest 怎么集成 Allure 报告？常用能力有哪些？
+- answer: 集成两步：装 `allure-pytest` 插件，跑测试时加 `--alluredir=result` 参数生成原始结果目录，再用 allure 命令行工具 `allure serve result` 渲染成网页报告。常用能力记四个：`@allure.feature/@allure.story` 给用例分层打标，报告按业务模块树状展示；`allure.attach` 附加文件（截图、接口响应），失败排查全靠它；`with allure.step("步骤")` 记录执行步骤；severity 标记优先级。面试加分点：说清楚 CI 里怎么串——pytest 产结果目录，Jenkins/GitLab CI 装 Allure 插件出趋势图，每次构建对比通过率变化。
+
+### 20. pytest_xdist_precautions
+- tags: Pytest, xdist, 并发
+- difficulty: hard
+- frequency: 中高频
+- prompt: 用 pytest-xdist 并发跑用例，有哪些坑要注意？
+- answer: 坑集中在三点。第一，用例必须无序无状态：xdist 把用例打散到多个 worker，谁先谁后不确定，用例间共享可变全局变量、依赖执行顺序的写法必然翻车。第二，fixture 作用域被打破：session 级 fixture 在每个 worker 进程里都会执行一次，比如 session 级建数据库连接，8 个 worker 就是 8 条连接，初始化逻辑要想清楚放哪。第三，报告和资源竞争：同一个文件被多个 worker 同时写要加锁或用临时目录，登录态要每个 worker 各自获取。收尾给方案：`-n auto` 按核数跑、配 `--dist=loadscope` 让同模块/同类的用例落同一 worker，能规避一部分顺序问题。
+

@@ -1,27 +1,16 @@
 ---
 name: python-testdev-drill
-description: Reusable module-based drill workflow for Python test-development engineer interview practice, now upgraded with configurable batch drilling, per-module history, wrong-book, favorites, custom question bank, non-repeating extraction, and multiple drill modes.
+description: Reusable module-based drill workflow for Python test-development engineer interview practice, with batch drilling, per-module history, wrong-book with spaced review, favorites, custom bank, non-repeating extraction, report, and multiple drill modes.
 ---
 
 # Python TestDev Drill
 
-## Purpose
+为 Python 测试开发工程师面试准备提供**长期刷题系统**：模块化练习、进度持久化、错题本（含艾宾浩斯复习）、收藏夹、自建题库、统计报表、批量刷题、做题评分。
 
-Provide a reusable long-term interview drill system for Python test-development engineer preparation.
+## 模块清单
 
-This skill is no longer just a one-question practice flow. It is a **persistent question-drill system** with:
-- module-based practice
-- configurable question count per round
-- optional direct answers per question
-- non-repeating question extraction
-- per-module history
-- wrong-question review
-- favorites review
-- custom question bank
-
-## Current Seed Modules
-- Python基础手写代码题
-- Python编程基础理论面试题
+- Python基础手写代码题（100 题，13 分类）
+- Python编程基础理论面试题（100 题）
 - Python高阶编程
 - 自动化测试题
 - Pytest框架
@@ -32,300 +21,148 @@ This skill is no longer just a one-question practice flow. It is a **persistent 
 - 数据库面试题
 - Linux面试题
 
-## Use This Skill When
+以上均为独立一等模块，**禁止互相合并**。性能/中间件/数据库/Linux 题不得路由进「自动化测试题」。
 
-Use this skill when the user wants to:
-- practice interview questions by module
-- choose how many questions to receive at once
-- continue from saved progress
-- review wrong questions
-- review favorite questions
-- save custom questions into a module bank
-- avoid repeating questions already brushed
-- use **刷题模式**（题目 + 参考答案）
-- use **做题模式**（只给题目，用户作答后再评分和建议）
+## 触发场景
 
-## Core Behavior
+用户想：按模块刷题/做题、指定每轮题数、续刷保存的进度、复习错题、复习收藏题、保存自建题、避免重复题、查看刷题报表、重刷到期错题、模拟面试时，使用本 skill。
 
-- Support both **single-question** and **multi-question** drill.
-- The skill supports two first-class interaction modes:
-  - **刷题模式** = give the question and show the reference answer by default
-  - **做题模式** = give the question only, wait for the user's answer, then score and advise
-- If the user says `继续`, resume the last module, last drill mode, and last batch size.
-- If the user says `刷题` or `继续刷题`, explicitly enter **刷题模式**.
-- If the user says `做题` or `继续做题`, explicitly enter **做题模式**.
-- If the user says `做题模式`, explicitly enter **做题模式**.
-- If the user explicitly names a module, switch to that module.
-- `性能测试面试题` and `中间件面试题` are independent first-class modules and must not be routed into `自动化测试题`.
-- If the user says `性能测试模块` / `性能测试面试题` / `刷性能测试` / `做性能测试`, route to `性能测试面试题`.
-- If the user says `中间件模块` / `中间件面试题` / `刷中间件` / `做中间件`, route to `中间件面试题`.
-- If the user says `数据库模块` / `数据库面试题` / `刷数据库` / `做数据库`, route to `数据库面试题`.
-- If the user says `Linux模块` / `Linux面试题` / `刷Linux` / `做Linux` / `刷Linux命令` / `做Linux命令`, route to `Linux面试题`.
-- For both **刷题模式** and **做题模式**, extraction must use the same de-duplication rules.
-- As long as the current pool still has unseen questions, do not repeat already asked questions.
-- Questions asked in any mode must be written into history.
-- Question issuance itself must trigger automatic progress synchronization for the current module.
-- In both `刷题模式` and `做题模式`, once a question is issued, the skill should immediately update the current active module, current mode, last round question, and seen-question records.
-- Questions directly answered in `做题模式` must also count as already seen for future de-duplication.
-- For **all modules**, prefer **高频** questions first, then **中高频**, then **加分题**.
-- This high-frequency-first rule applies to both **刷题模式** and **做题模式**.
-- Any future newly created module must inherit the same high-frequency-first routing rule.
-- For hand-coding practice, keep two distinct routes:
-  - `Python基础手写代码题` should focus on 基础高频题 such as 列表、字符串、字典、集合、栈、双指针、哈希、排序.
-  - `logger/config/request/assert/base page/smart wait` style engineering implementation questions should be routed to a separate 测试开发工程手写题 line or related engineering modules, instead of being mixed into the basic hand-code mainline.
-- `自动化测试题` should focus on automation interview questions only; do not merge `性能测试面试题` or `中间件面试题` into it.
-- `数据库面试题` is also an independent first-class module and must not be merged into `自动化测试题` or other modules.
-- `Linux面试题` is also an independent first-class module and must not be merged into `自动化测试题` or other modules.
+## 两种核心模式
 
-## Supported Drill Modes
+| 模式 | 触发词 | 行为 |
+|------|--------|------|
+| **刷题模式** | `刷题` / `继续刷题` / `切换到刷题模式` | 题目 + 参考答案一起展示 |
+| **做题模式** | `做题` / `继续做题` / `做题模式` | 只给题目，等用户作答，再评分和建议 |
 
-### 1. 随机刷题
-Examples:
-- `随机刷 3 道题`
-- `随机刷 5 道 Python 面试题`
+- `继续` = 复用上次模块、模式、批量大小。
+- 用户点名模块即切换；切换不重置其他模块状态。
 
-Behavior:
-- select unseen questions first
-- can mix system bank + custom bank if appropriate
-- show reference answers by default
+## 状态同步（必须使用脚本，禁止手工 Edit state.md）
 
-### 2. 选择模块刷题
-Examples:
-- `刷 3 道 Python基础手写代码题`
-- `刷 5 道 自动化测试题`
+所有状态操作必须通过 `sync_state.py` 完成（用 Python 3.13 绝对路径执行，工作目录为 skill 目录）：
 
-Behavior:
-- extract from the named module
-- default to unseen questions first
-- each question includes a reference answer unless the user asks to hide answers
+```
+sync_state.py switch --module <M> --mode brush --batch 5   # 切换模块/模式/批量
+sync_state.py issue --module <M> --questions "51. a,52. b" --mode brush  # 出题后同步
+sync_state.py answer --module <M> --question 51 --result correct         # 记录答对
+sync_state.py answer --module <M> --question 51 --result wrong --note "原因"  # 记录答错进错题本
+sync_state.py answer --module <M> --question 51 --result reveal          # 直接看答案也计为薄弱点
+sync_state.py reset --module <M>                          # 清空模块进度（state+history 一起清）
+sync_state.py report                                      # 全模块统计报表（进度条+错题数）
+sync_state.py wrong-list --module <M>                     # 查看模块错题集
+sync_state.py review --module <M>                         # 查看今日到期该复习的错题
+```
 
-### 3. 随机做题
-Examples:
-- `随机做 3 道题`
-- `随机做 5 道 Python 面试题`
+出题、作答、切换、重置的**每一步**都必须立即调用脚本同步，禁止手工 Edit 造成的重复段落/编号错位。
 
-Behavior:
-- select unseen questions first
-- can mix system bank + custom bank if appropriate
-- do not show the answer by default
-- wait for the user answer, then score and advise
+## 答案风格规范（重要，用户明确要求）
 
-### 4. 选择模块做题
-Examples:
-- `做 3 道 Python基础手写代码题`
-- `做 5 道 自动化测试题`
-- `继续 Python编程基础理论面试题做题`
+1. **口语化**：像面试现场口头回答，说人话，不堆术语。
+2. **正常面试回答长度**：不能只有一句话，也不要长篇大论——结构是「一句核心定义 → 展开 3-4 个要点（可带短代码）→ 一句话收尾/面试怎么答」。
+3. **逻辑清晰**：先总后分、有编号、有对比表格（适合概念对比题）。
+4. **易记忆**：给口诀或一句话总结（如「小右大左」「查补数、存自己」）。
+5. 手写代码题：**只给一种最简单、最容易记忆的写法**，不罗列多种解法；附「记忆要点」。
+6. 题目展示：完整题目 + 标签 + 难度 + 频率 + 示例（最多 1 个，边界必要时才加第 2 个）。
 
-Behavior:
-- extract from the named module
-- default to unseen questions first
-- do not show the answer by default
-- after the user answers, score on correctness, edge cases, style, complexity, and expression clarity
+## 批量刷题规则
 
-### 5. 错题集刷题 / 做题
-Examples:
-- `刷错题集`
-- `做错题集`
-- `做 5 道 自动化测试题错题`
+- 用户可指定每轮题数（如「每次给出5题和答案」），记入 `current_batch_size`。
+- 批量出题时每题独立编号展示，结尾统一给进度提示。
+- 修改批量大小用 `switch --batch N`。
 
-Behavior:
-- prioritize historically mistaken questions
-- if wrong bank is empty, say so clearly
-- 刷题模式显示答案，做题模式先不给答案
+## 做题模式评分规范
 
-### 6. 收藏题库刷题 / 做题
-Examples:
-- `刷收藏题`
-- `做 3 道 测试开发面试题收藏题`
+用户提交答案后，按以下维度点评（简洁、先肯定再指错）：
 
-Behavior:
-- extract from favorite questions only
-- 刷题模式显示答案，做题模式先不给答案
+1. **正确性**（核心）
+2. **边界处理**（空输入、单元素、越界）
+3. **代码风格**（命名规范——用户曾用拼音命名 maop/fobi，应建议 bubble_sort/fibonacci）
+4. **复杂度**（时间/空间，能提则提）
 
-### 7. 自建题库刷题 / 做题
-Examples:
-- `刷自建题库`
-- `从 Python基础手写代码题自建题库做 4 道`
+评分规则：
+- 答案 < 8/10 → `answer --result wrong` 记入错题本
+- 直接要答案 / 说不会 → `answer --result reveal` 记入错题本
+- 重做全对 → 仍保留错题记录，次数+1 的逻辑只在再次答错时触发；重做正确时在 note 中追加"重做后全对"
 
-Behavior:
-- extract from user-saved custom questions only
-- 刷题模式显示答案，做题模式先不给答案
+点评后先给正确写法和记忆要点，再继续下一题。
 
-## Answer Visibility Rules
+## 常用交互指令
 
-### Default rules
-- In `刷题` mode, each question should include a concise reference answer by default.
-- In `做题` mode, the answer should be hidden by default.
-- If the user asks `先只给题，不要答案`, hide answers for the current round.
-- If the user later asks `看答案`, reveal the stored answer.
-- In `做题` mode, after the user submits an answer, score first and give suggestions first; only reveal the reference answer when the user asks for it or when it is clearly necessary for correction.
+| 用户说 | 行为 |
+|--------|------|
+| `继续` / `继续刷` | 按当前模块/模式/批量继续下一批 |
+| `看答案` | 展示当前题参考答案；做题模式下同时记为薄弱点（reveal） |
+| `换一题` | 跳过当前题换下一题（被跳过的题仍记入 asked，不重置进度） |
+| `保存进度` | 确认 state 已同步 + 在项目 memory 写当日进度日志 |
+| `清空XX进度，从第一题开始` | `reset --module`，然后按当前模式从第 1 题重新开始 |
+| `切换到刷题模式 XX` | switch 到目标模块（brush 模式） |
+| `查看刷题报告` / `刷题报告` | 运行 `report` 并展示 |
+| `重刷错题` / `复习错题` | 运行 `review`，到期的错题按做题模式重出 |
+| `收藏第N题` / `收藏这题` | 加入模块收藏夹 |
+| `保存这道题到XX` | 加入模块自建题库 |
 
-### Legacy / direct answer request
-If the user says:
-- `给出答案`
-- `直接给答案`
+## 去重规则（统一，仅此一份）
 
-Behavior:
-- provide the answer to the current question
-- in `做题模式`, always treat that question as a weak point and add it to the module's wrong-question notebook
-- do not append duplicates if the same question is already in the wrong-question notebook
-- this rule applies especially to `做题模式`, because asking directly for the answer means the current question should be treated as a weak point
+- 同一模块内，`asked_questions`、`history_questions`、`answer_given_questions` 构成统一的"已见集合"，刷题/做题模式共用。
+- 默认只出未见过的题；题库耗尽时明确告知用户并询问是否允许重复。
+- 错题/收藏/自建题复习模式可在各自池内重复。
+- 模式切换不重置去重。
 
-## Question Bank Layers
+## 高频优先规则
 
-Each module may draw from these layers:
+- 题库带 frequency 字段（高频/中高频/加分题）时，**优先出高频题**，再中高频，再加分题。
+- 按题库顺序推进（completed_through）时若发现前面的题是低频而后有高频，仍以顺序为主，避免状态管理复杂化；新建模块时直接按频率排好题目顺序。
+- 手写代码模块细分路由：基础算法题归 `Python基础手写代码题`；工程封装题（logger/config/request/base_page/smart_wait）归其所属工程模块。
 
-1. **System bank** — built-in question bank
-2. **Custom bank** — user-saved questions
-3. **Favorites bank** — user-starred questions
-4. **Wrong bank** — historically mistaken questions
-5. **History log** — all brushed questions
+## 错题本与艾宾浩斯复习
 
-## Non-Repetition Rules
+错题格式（state.md 中，由脚本维护）：
+```
+- 题目全名 | 错误原因 | 日期 | 错N次 | 复习:YYYY-MM-DD,YYYY-MM-DD,...
+```
 
-Inside the same module:
-- `刷题模式` and `做题模式` must share one unified de-duplication pool
-- any question that has appeared before in `asked_questions`, `history_questions`, or `answer_given_questions` counts as already seen
-- default extraction must always prefer unseen questions first
-- do not repeat questions only because the interaction mode changed from `刷题` to `做题`, or from `做题` to `刷题`
-- prefer unseen system questions first, then unseen custom questions
-- wrong / favorites / custom review modes may repeat only inside their own review pool
-- if the normal module pool is exhausted, explicitly tell the user that new questions are exhausted and ask whether repetition is allowed
+- 复习周期：**1 / 3 / 7 / 15 天**（脚本自动计算下一复习日）。
+- 每日首次进入刷题会话时，主动运行 `review` 提醒今日到期错题（有则提醒，无则不打扰）。
+- 错题重刷采用**做题模式**（先答再看），答对不删记录、答错次数+1 并顺延复习日。
 
-## Persistence Model
+## 模拟面试模式（加分功能）
 
-Each module maintains:
-- module_name
-- completed_through
-- next_question
-- asked_questions
-- mistakes
-- answer_given_questions
-- history_questions
-- favorite_questions
-- custom_questions
-- current_mode
-- current_batch_size
-- last_round_questions
-- last_round_results
+用户说 `模拟面试` 时：
+1. 从当前模块（或用户指定模块）**随机**抽题（无视去重，模拟真实随机性）。
+2. 每题限时思考（用户说"过"跳过，说"好了"开始回答）。
+3. 用户回答后按面试官视角追问 1-2 个延伸问题（如答 two_sum 追问"dict 底层为什么查找快"）。
+4. 结束后输出本场评分：正确率、表达清晰度、薄弱知识点。
 
-## New User Actions
+## 输出模板
 
-### Save a custom question
-Examples:
-- `保存这道题到 Python基础手写代码题`
-- `加入到 自动化测试题 自建题库`
+每题结构：
+1. 题号 + 题目标识
+2. 题目正文（含 1 个示例）
+3. 标签 / 难度 / 频率
+4. 参考答案（刷题模式或做题模式点评后）
+5. 记忆要点（代码题）或 面试怎么答（理论题）
 
-Behavior:
-- save the original question text into that module's custom bank
-- preserve module isolation
+## 持久化模型
 
-### Favorite a question
-Examples:
-- `收藏第2题`
-- `把这题加入收藏`
+每个模块维护：module_name、completed_through、next_question、asked_questions、mistakes（结构化）、answer_given_questions、history_questions、favorite_questions、custom_questions、current_mode、current_batch_size、last_round_questions、last_round_results。
 
-Behavior:
-- save into the module's favorites bank
+全部由 `sync_state.py` 读写，`state.md` 是唯一数据源（wrong_questions.md 仅作历史归档，不再写入）。
 
-### Query stored data
-Examples:
-- `查看刷题历史`
-- `查看自动化测试题错题集`
-- `查看测试开发面试题收藏题库`
-- `查看Python基础手写代码题自建题库`
+## 题库文件
 
-## Runtime Rules
+| 模块 | 文件 |
+|------|------|
+| Python基础手写代码题 | module_python_basic_code.md |
+| Python编程基础理论面试题 | MODULE_PYTHON_THEORY.md |
+| Python高阶编程 | MODULE_ADVANCED_PYTHON.md |
+| 自动化测试题 | MODULE_AUTOMATION_TEST.md |
+| Pytest框架 | MODULE_PYTEST_FRAMEWORK.md |
+| 测试开发面试题 | MODULE_TESTDEV_INTERVIEW.md |
+| 测试工程化与CI/CD | MODULE_CICD_ENGINEERING.md |
+| 性能测试面试题 | MODULE_PERFORMANCE_TEST.md |
+| 中间件面试题 | MODULE_MIDDLEWARE_INTERVIEW.md |
+| 数据库面试题 | MODULE_DATABASE_INTERVIEW.md |
+| Linux面试题 | MODULE_LINUX_INTERVIEW.md |
 
-### Default extraction
-- If the user does not specify a mode, use the current module and prefer unseen questions first.
-- If the user only says `继续`, reuse the last module, last mode, and last batch size.
-- If the user says `刷题` or `继续刷题`, explicitly continue in `刷题模式`.
-- If the user says `做题`, `继续做题`, or `做题模式`, explicitly continue in `做题模式`.
-
-### Mode routing
-- wrong mode → only use `wrong_questions.md`
-- favorites mode → only use `favorites.md`
-- custom mode → only use `custom_questions.md`
-- module mode / random mode → use system bank first, then unseen custom questions
-- `刷题模式` and `做题模式` share the same extraction, de-duplication, wrong-book, favorites, and custom-bank routing logic
-- the only default difference between `刷题模式` and `做题模式` is answer visibility and whether the user answers first before scoring
-
-### De-duplication
-- By default, do not repeat questions already seen in the same module, whether they were seen in `刷题模式` or `做题模式`.
-- Treat `asked_questions`, `history_questions`, and `answer_given_questions` as a unified seen-question set.
-- Switching modes must not reset or weaken de-duplication.
-- If the available normal pool is exhausted, explicitly ask whether repetition is allowed instead of silently reusing old questions.
-- Wrong/favorites modes may repeat because the goal is targeted review, but normal module extraction must stay de-duplicated.
-
-### Output template
-For each question, use this structure when possible:
-1. 题号 / identifier
-2. 标题
-3. 题目正文
-4. 标签
-5. 难度
-6. 参考答案（if answers are visible in the current round）
-
-### Question brevity
-- By default, keep question prompts concise.
-- Prefer only one necessary example.
-- Add a second example only when the edge case truly needs clarification.
-- Prefer: 题目 + 关键要求 + 1 个示例, instead of long explanatory setup.
-
-### Write-back rules
-- Any brushed question must be appended to `history.md`.
-- In both `刷题模式` and `做题模式`, as soon as a question is issued, automatically sync the current module progress.
-- Automatic sync should update at least: `last_active_module`, `last_active_mode`, `last_batch_size`, `last_round_questions`, and the module's seen-question records.
-- Add to `wrong_questions.md` when:
-  - the user answers incorrectly
-  - the user directly asks for the answer
-  - the user explicitly says they do not know it / need review
-- Add to `favorites.md` only on explicit favorite action.
-- Add to `custom_questions.md` only when the user explicitly asks to save a custom question.
-
-### Answer visibility
-- In brushing mode, concise reference answers should be shown by default.
-- In doing mode, answers should be hidden by default.
-- If the user asks to hide answers, suppress answers for the current round.
-- The user may later request the answer for a specific question.
-- In `做题模式`, after the user submits an answer, evaluate first, then give suggestions, and then reveal the reference answer only when requested or clearly helpful.
-
-## Scoring Framework
-
-When the user submits an answer or code, evaluate concisely on:
-- correctness
-- edge cases
-- code style
-- time complexity
-- space complexity
-- interview communication
-- implementation clarity for coding questions
-
-Scoring rule for `做题模式`:
-- if the answer score is below `8/10`, add the question to the module's wrong-question notebook
-- if the user directly requests the answer, also add the question to the module's wrong-question notebook
-- do not append duplicates if the same question is already in the wrong-question notebook
-
-Record wrong or weak items into the module's wrong-question notebook when appropriate.
-In `做题模式`, scoring and suggestions should come before the reference answer unless the user explicitly requests the answer first.
-
-## Bundled Resources
-
-- `state.md`: current persisted multi-module state
-- `MODULES.md`: module contract and expansion rules
-- `QUESTION_BANK_GUIDE.md`: question-bank organization guidance
-- `history.md`: brushed-question history
-- `wrong_questions.md`: wrong-question notebook
-- `favorites.md`: favorites bank
-- `custom_questions.md`: user custom bank
-- `question_bank.md`: bank structure/index notes
-
-## Current Seed Modules
-
-- Python基础手写代码题
-- 自动化测试题
-- Pytest框架
-- 测试开发面试题
-- Python编程基础理论面试题
-- 测试工程化与CI/CD
+题库格式统一：`### 编号. 题名` + tags / difficulty / frequency / prompt / answer。
+扩充题库时：从真实面试来源搜集（面试鸭、CSDN 测试面试真题、51Testing 等），去重后追加，保持编号连续。

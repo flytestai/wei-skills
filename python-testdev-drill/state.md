@@ -2,216 +2,45 @@
 
 version: 2
 
-last_active_module: 自动化测试题
+last_active_module: Python编程基础理论面试题
 last_active_mode: brush
-last_batch_size: 1
-answer_visibility: hidden_by_default_unless_brush_mode
+last_batch_size: 5
+answer_visibility: visible_in_brush_mode
 
 ## Module: Python基础手写代码题
 
 module_name: Python基础手写代码题
-completed_through: 70
-next_question: 71
+completed_through: 11
+next_question: 12
 asked_questions:
-  - 1. count_uppercase
-  - 2. first_unique_char
-  - 3. is_palindrome
-  - 4. remove_duplicates
-  - 5. find_max_num
-  - 6. sum_even_nums
-  - 7. reverse_string
-  - 8. count_words
-  - 9. second_largest
-  - 10. fizz_buzz
-  - 11. count_chars
-  - 12. merge_dicts
-  - 13. flatten_list
-  - 14. group_by_length
-  - 15. find_common
-  - 16. find_all_indexes
-  - 17. rotate_list
-  - 18. chunk_list
-  - 19. transpose_matrix
-  - 20. is_valid_parentheses
-  - 21. logger_wrapper
-  - 22. move_zeros
-  - 23. find_missing_number
-  - 24. max_consecutive_ones
-  - 25. is_anagram
-  - 26. group_anagrams
-  - 27. merge_sorted_lists
-  - 28. sort_dict_by_value
-  - 29. binary_search
-  - 30. bubble_sort
-  - 31. quick_sort
-  - 32. count_characters
-  - 40. count_vowels
-  - 41. find_first_non_repeated_char
-  - 44. is_valid_anagram
-  - 45. count_frequency
-  - 46. count_frequency_unique
-  - 47. first_unique_char
-  - 48. reverse_words
-  - 49. reverse_each_word
-  - 50. count_words_length
-  - 51. count_uppercase_letters
-  - 52. sum_even_numbers
-  - 53. find_max_number
-  - 54. second_largest_number
-  - 61. is_palindrome_two_pointers
-  - 62. merge_two_sorted_lists
-  - 63. move_zeros
-  - 64. two_sum_sorted
-  - 65. reverse_chars
-  - 66. merge_intervals_simple
-  - 67. max_area
-  - 68. remove_target
-  - 69. sort_colors_simple
-  - 70. top_k_frequent_simple
+  - 1. reverse_string
+  - 2. count_characters
+  - 3. dedup_list
+  - 4. merge_sorted_lists
+  - 5. sort_dict_by_value
+  - 6. binary_search
+  - 7. bubble_sort
+  - 8. quick_sort
+  - 9. fibonacci
+  - 10. two_sum
+  - 11. valid_parentheses
 mistakes:
-  - count_uppercase
-  - first_unique_char
-  - is_palindrome
-  - remove_duplicates
-  - find_max_num
-  - sum_even_nums
-  - reverse_string
-  - count_words
-  - second_largest
-  - fizz_buzz
-  - count_chars
-  - merge_dicts
-  - flatten_list
-  - group_by_length
-  - find_common
-  - find_all_indexes
-  - rotate_list
-  - chunk_list
-  - transpose_matrix
-  - is_valid_parentheses
-  - logger_wrapper
-  - move_zeros
-  - find_missing_number
-  - max_consecutive_ones
-  - is_anagram
-  - group_anagrams
-  - merge_sorted_lists
-  - sort_dict_by_value
-  - binary_search
-  - bubble_sort
-  - count_characters
-  - find_first_non_repeated_char
-  - is_valid_anagram
-  - count_frequency
-  - first_unique_char
-  - reverse_each_word
-  - count_uppercase_letters
-  - second_largest_number
-  - is_palindrome_two_pointers
-  - merge_two_sorted_lists
-  - move_zeros
-  - two_sum_sorted
-  - reverse_chars
-  - merge_intervals_simple
-  - max_area
-  - sort_colors_simple
-  - top_k_frequent_simple
+  - dedup_list | 逻辑正确，最后一行未调用函数直接打印原列表 | 2026-09-09 | 错1次 | 复习:2026-09-10
+  - merge_sorted_lists | append写成整个列表、j+=2、extend未切片、缺return；重做后全对 | 2026-09-09 | 错1次 | 复习:2026-09-10
+  - sort_dict_by_value | sorted的key=关键字遗漏、缺dict()转换 | 2026-09-09 | 错1次 | 复习:2026-09-10
+  - binary_search | 首答mid漏括号、else误写left；重做后全对 | 2026-09-09 | 错1次 | 复习:2026-09-10
+  - two_sum | set/dict用混：应存值→下标映射；targe拼写错；存补数方向反。口诀"查补数、存自己" | 2026-09-09 | 错1次 | 复习:2026-09-10
 answer_given_questions:
-  - first_unique_char
-  - is_palindrome
-  - remove_duplicates
-  - find_max_num
-  - sum_even_nums
-  - reverse_string
-  - count_words
-  - second_largest
-  - fizz_buzz
-  - merge_dicts
-  - rotate_list
-  - chunk_list
-  - transpose_matrix
-  - is_valid_parentheses
-  - logger_wrapper
-  - move_zeros
-  - find_missing_number
-  - max_consecutive_ones
-  - is_anagram
-  - group_anagrams
-  - merge_sorted_lists
-  - sort_dict_by_value
-  - binary_search
-  - bubble_sort
-  - find_first_non_repeated_char
-  - reverse_words
-  - second_largest_number
-  - merge_two_sorted_lists
-  - move_zeros
-  - two_sum_sorted
-  - reverse_chars
 history_questions:
-  - count_uppercase
-  - first_unique_char
-  - is_palindrome
-  - remove_duplicates
-  - find_max_num
-  - sum_even_nums
   - reverse_string
-  - count_words
-  - second_largest
-  - fizz_buzz
-  - count_chars
-  - merge_dicts
-  - flatten_list
-  - group_by_length
-  - find_common
-  - find_all_indexes
-  - rotate_list
-  - chunk_list
-  - transpose_matrix
-  - is_valid_parentheses
-  - logger_wrapper
-  - move_zeros
-  - find_missing_number
-  - max_consecutive_ones
-  - is_anagram
-  - group_anagrams
-  - merge_sorted_lists
-  - sort_dict_by_value
-  - binary_search
-  - bubble_sort
-  - quick_sort
-  - count_characters
-  - count_vowels
-  - find_first_non_repeated_char
-  - is_valid_anagram
-  - count_frequency
-  - count_frequency_unique
-  - first_unique_char
-  - reverse_words
-  - reverse_each_word
-  - count_words_length
-  - count_uppercase_letters
-  - sum_even_numbers
-  - find_max_number
-  - second_largest_number
-  - is_palindrome_two_pointers
-  - merge_two_sorted_lists
-  - move_zeros
-  - two_sum_sorted
-  - reverse_chars
-  - merge_intervals_simple
-  - max_area
-  - remove_target
-  - sort_colors_simple
-  - top_k_frequent_simple
 favorite_questions:
 custom_questions:
-current_mode: do
+current_mode: brush
 current_batch_size: 1
 last_round_questions:
-  - 70. top_k_frequent_simple
+  - 11. valid_parentheses
 last_round_results:
-  - answer_requested_directly_in_do_mode
+  - question_issued_awaiting_user_answer
 
 ## Module: Python高阶编程
 
@@ -341,18 +170,42 @@ last_round_results:
 ## Module: 性能测试面试题
 
 module_name: 性能测试面试题
-completed_through: 0
-next_question: 1
+completed_through: 21
+next_question: 22
 asked_questions:
+  - 1. 什么是性能测试，性能测试的目的是什么
+  - 2. 性能测试和功能测试有什么区别
+  - 3. 性能测试的主要类型有哪些
+  - 4. 什么是 TPS 和 QPS，它们有什么区别
+  - 5. 什么是响应时间，90% 响应时间是什么意思
+  - 6. 什么是并发用户数，它和线程数是一个概念吗
+  - 7. 什么是性能瓶颈，常见瓶颈有哪些
+  - 8. 什么是思考时间，为什么要设置思考时间
+  - 9. 什么是吞吐量，它和 TPS 有什么关系
+  - 10. 什么是性能拐点，如何找到性能拐点
+  - 11. 什么是容量规划，如何做容量规划
+  - 12. 什么是性能基线，为什么要建立性能基线
+  - 13. 什么是混合场景压测，和单接口压测有什么区别
+  - 14. 性能测试报告应该包含哪些内容
+  - 15. 什么是长尾请求，它有什么影响
+  - 16. 什么是全链路压测，和普通压测有什么区别
+  - 17. 性能测试中如何准备测试数据
+  - 18. 什么是预热，为什么需要预热
+  - 19. 性能测试通常什么时候做
+  - 20. 性能测试和压力测试是一回事吗
+  - 21. 性能测试中主要监控哪些指标
 mistakes:
 answer_given_questions:
 history_questions:
 favorite_questions:
 custom_questions:
-current_mode: module
+current_mode: brush
 current_batch_size: 1
 last_round_questions:
+  - 21. 性能测试中主要监控哪些指标
 last_round_results:
+  - question_issued_in_brush_mode
+  - question_issued_in_brush_mode
 
 ## Module: 中间件面试题
 
@@ -481,8 +334,8 @@ last_round_results:
 ## Module: Python编程基础理论面试题
 
 module_name: Python编程基础理论面试题
-completed_through: 50
-next_question: 51
+completed_through: 51
+next_question: 52
 asked_questions:
   - 1. *args 和 **kwargs 的区别
   - 2. 深拷贝和浅拷贝的区别
@@ -534,6 +387,7 @@ asked_questions:
   - 48. Python 中为什么通常建议用 is 判断 None
   - 49. Python 中为什么字符串拼接大量场景更推荐 join()
   - 50. Python 中浅拷贝和深拷贝到底差在哪
+  - 51. zip() 的作用是什么
 mistakes:
 answer_given_questions:
 history_questions:
@@ -624,7 +478,7 @@ favorite_questions:
   - Python 中为什么字符串拼接大量场景更推荐 join()？
 custom_questions:
 current_mode: brush
-current_batch_size: 1
+current_batch_size: 5
 last_round_questions:
   - 50. Python 中浅拷贝和深拷贝到底差在哪
 last_round_results:
