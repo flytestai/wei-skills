@@ -203,6 +203,12 @@ def cmd_issue(args):
     print("issued %d questions, next_question=%s" % (len(qs), fields["next_question"]))
 
 
+def q_key(q):
+    """题目归一化键：去掉 "N. " 编号前缀，用于错题本与 asked 列表的匹配。
+    兼容错题本中不带编号的旧条目（如 dedup_list）与带编号的写法（如 3. dedup_list）。"""
+    return re.sub(r"^\d+\.\s*", "", q).strip()
+
+
 def parse_mistake_line(line):
     """解析错题行，兼容新旧两种格式：
     新: - 题目 | 原因 | YYYY-MM-DD | 错N次 | 复习:YYYY-MM-DD,YYYY-MM-DD
@@ -225,7 +231,9 @@ def parse_mistake_line(line):
 
 
 def format_mistake_line(mk):
-    return "- %s | %s | %s | %s | %s" % (mk["q"], mk["reason"], mk["date"], mk["count"], mk["review"])
+    # 注意：rebuild_module_section 写入列表项时会自动加 "  - " 前缀，
+    # 这里不能再加 "- "，否则会写成 "- - 题目" 的双横线。
+    return "%s | %s | %s | %s | %s" % (mk["q"], mk["reason"], mk["date"], mk["count"], mk["review"])
 
 
 def cmd_answer(args):
@@ -254,11 +262,12 @@ def cmd_answer(args):
         parsed = [parse_mistake_line(x) for x in fields["mistakes"]]
         found = False
         for mk in parsed:
-            if mk["q"] == target:
+            if q_key(mk["q"]) == q_key(target):
                 n = re.sub(r"\D", "", mk["count"]) or "0"
                 mk["count"] = "错%d次" % (int(n) + 1)
                 mk["reason"] = args.note or mk["reason"]
                 mk["date"] = date.today().isoformat()
+                mk["q"] = target  # 统一升级为带编号的写法
                 # 追加下一个复习日
                 mk["review"] = add_review_date(mk["review"])
                 found = True

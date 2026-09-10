@@ -2,16 +2,16 @@
 
 version: 2
 
-last_active_module: Python编程基础理论面试题
+last_active_module: Python基础手写代码题
 last_active_mode: brush
-last_batch_size: 5
+last_batch_size: 1
 answer_visibility: visible_in_brush_mode
 
 ## Module: Python基础手写代码题
 
 module_name: Python基础手写代码题
-completed_through: 11
-next_question: 12
+completed_through: 15
+next_question: 16
 asked_questions:
   - 1. reverse_string
   - 2. count_characters
@@ -24,23 +24,32 @@ asked_questions:
   - 9. fibonacci
   - 10. two_sum
   - 11. valid_parentheses
+  - 12. longest_substring_without_repeat
+  - 13. retry_decorator
+  - 14. singleton
+  - 15. context_manager
 mistakes:
   - dedup_list | 逻辑正确，最后一行未调用函数直接打印原列表 | 2026-09-09 | 错1次 | 复习:2026-09-10
   - merge_sorted_lists | append写成整个列表、j+=2、extend未切片、缺return；重做后全对 | 2026-09-09 | 错1次 | 复习:2026-09-10
   - sort_dict_by_value | sorted的key=关键字遗漏、缺dict()转换 | 2026-09-09 | 错1次 | 复习:2026-09-10
   - binary_search | 首答mid漏括号、else误写left；重做后全对 | 2026-09-09 | 错1次 | 复习:2026-09-10
   - two_sum | set/dict用混：应存值→下标映射；targe拼写错；存补数方向反。口诀"查补数、存自己" | 2026-09-09 | 错1次 | 复习:2026-09-10
+  - 12. longest_substring_without_repeat | 只扫描到第一次重复就break，等于只求了从下标0开始的前缀无重复长度；pwwkew 应返回3实际返回2。正确思路是滑动窗口：重复时收缩左边界继续扫，而不是整体停止 | 2026-09-10 | 错1次 | 复习:2026-09-11
+  - 13. retry_decorator | 直接看答案：带参数装饰器（三层结构）不熟练 | 2026-09-10 | 错1次 | 复习:2026-09-11
+  - 14. singleton | 直接看答案：单例模式写法待巩固 | 2026-09-10 | 错1次 | 复习:2026-09-11
+  - 15. context_manager | 直接看答案：__enter__/__exit__ 自定义上下文管理器待巩固 | 2026-09-10 | 错1次 | 复习:2026-09-11
 answer_given_questions:
 history_questions:
-  - reverse_string
+  - 12. longest_substring_without_repeat
+  - 13. retry_decorator
+  - 14. singleton
+  - 15. context_manager
 favorite_questions:
 custom_questions:
 current_mode: brush
 current_batch_size: 1
 last_round_questions:
-  - 11. valid_parentheses
 last_round_results:
-  - question_issued_awaiting_user_answer
 
 ## Module: Python高阶编程
 
@@ -334,8 +343,8 @@ last_round_results:
 ## Module: Python编程基础理论面试题
 
 module_name: Python编程基础理论面试题
-completed_through: 51
-next_question: 52
+completed_through: 20
+next_question: 21
 asked_questions:
   - 1. *args 和 **kwargs 的区别
   - 2. 深拷贝和浅拷贝的区别
@@ -357,37 +366,6 @@ asked_questions:
   - 18. read()、readline()、readlines() 的区别
   - 19. sorted() 和 list.sort() 的区别
   - 20. global 和 nonlocal 的区别
-  - 21. hasattr()、getattr()、setattr() 的区别与作用
-  - 22. isinstance() 和 type() 的区别
-  - 23. __name__ == "__main__" 的作用
-  - 24. @staticmethod 为什么不需要 self
-  - 25. strip()、lstrip()、rstrip() 的区别
-  - 26. join() 和 + 拼接字符串的区别
-  - 27. append() 和 extend() 的区别
-  - 28. remove()、pop()、del 的区别
-  - 29. sort() 和 sorted() 的区别
-  - 30. tuple 和 list 有什么区别
-  - 31. dict.get(key) 和 dict[key] 的区别
-  - 32. lambda 和 def 有什么区别
-  - 33. map() 和列表推导式有什么区别
-  - 34. is 和 == 有什么区别
-  - 35. mutable 和 immutable 对象有哪些，区别是什么
-  - 36. Python 的参数传递方式怎么理解
-  - 37. 迭代器协议是什么
-  - 38. 为什么说生成器更省内存
-  - 39. Python 的字典为什么查找快
-  - 40. 面向对象三大特性是什么
-  - 41. 什么是多态，在 Python 里怎么理解
-  - 42. 什么是鸭子类型
-  - 43. super() 的作用是什么
-  - 44. __slots__ 的作用是什么
-  - 45. @property 是做什么的？有什么作用
-  - 46. @classmethod 常见适用场景有哪些
-  - 47. isinstance() 为什么通常比 type() 更推荐
-  - 48. Python 中为什么通常建议用 is 判断 None
-  - 49. Python 中为什么字符串拼接大量场景更推荐 join()
-  - 50. Python 中浅拷贝和深拷贝到底差在哪
-  - 51. zip() 的作用是什么
 mistakes:
 answer_given_questions:
 history_questions:
@@ -411,76 +389,16 @@ history_questions:
   - 18. read()、readline()、readlines() 的区别
   - 19. sorted() 和 list.sort() 的区别
   - 20. global 和 nonlocal 的区别
-  - 21. hasattr()、getattr()、setattr() 的区别与作用
-  - 22. isinstance() 和 type() 的区别
-  - 23. __name__ == "__main__" 的作用
-  - 24. @staticmethod 为什么不需要 self
-  - 25. strip()、lstrip()、rstrip() 的区别
-  - 26. join() 和 + 拼接字符串的区别
-  - 27. append() 和 extend() 的区别
-  - 28. remove()、pop()、del 的区别
-  - 29. sort() 和 sorted() 的区别
-  - 30. tuple 和 list 有什么区别
-  - 31. dict.get(key) 和 dict[key] 的区别
-  - 32. lambda 和 def 有什么区别
-  - 33. map() 和列表推导式有什么区别
-  - 34. is 和 == 有什么区别
-  - 35. mutable 和 immutable 对象有哪些，区别是什么
-  - 36. Python 的参数传递方式怎么理解
-  - 37. 迭代器协议是什么
-  - 38. 为什么说生成器更省内存
-  - 39. Python 的字典为什么查找快
-  - 40. 面向对象三大特性是什么
-  - 41. 什么是多态，在 Python 里怎么理解
-  - 42. 什么是鸭子类型
-  - 43. super() 的作用是什么
-  - 44. __slots__ 的作用是什么
-  - 45. @property 是做什么的？有什么作用
-  - 46. @classmethod 常见适用场景有哪些
-  - 47. isinstance() 为什么通常比 type() 更推荐
-  - 48. Python 中为什么通常建议用 is 判断 None
-  - 49. Python 中为什么字符串拼接大量场景更推荐 join()
-  - 50. Python 中浅拷贝和深拷贝到底差在哪
 favorite_questions:
-  - 协程和线程区别
-  - Python 的垃圾回收机制是怎样的
-  - try / except / else / finally 分别有什么作用
-  - __new__ 和 __init__ 有什么区别，它们分别在什么时候执行
-  - with 语句和上下文管理器的原理
-  - lambda 表达式的适用场景和限制
-  - 列表推导式和生成器表达式有什么区别
-  - 可变类型默认参数有什么坑？怎么规避？
-  - @classmethod 和 @staticmethod 有什么区别？各自适合什么场景？
-  - __str__ 和 __repr__ 有什么区别？各自什么时候用？
-  - set 和 list 的区别是什么？set 适合解决什么问题？
-  - Python 中 read()、readline()、readlines() 有什么区别？
-  - Python 中 sorted() 和 list.sort() 有什么区别？
-  - Python 中 global 和 nonlocal 有什么区别？
-  - Python 中 hasattr()、getattr()、setattr() 分别是做什么的？
-  - Python 中 isinstance() 和 type() 有什么区别？
-  - Python 中 __name__ == "__main__" 是做什么的？
-  - Python 中 strip()、lstrip()、rstrip() 有什么区别？
-  - Python 中 join() 是做什么的？和 + 拼接字符串有什么区别？
-  - Python 中 append() 和 extend() 有什么区别？
-  - Python 中 remove()、pop()、del 有什么区别？
-  - Python 中 sort() 和 sorted() 有什么区别？
-  - Python 中 dict.get(key) 和 dict[key] 有什么区别？
-  - Python 中 map() 和列表推导式有什么区别？
-  - Python 的函数参数传递方式应该怎么理解？
-  - 什么是 Python 的迭代器协议？
-  - 面向对象三大特性是什么？
-  - 什么是多态？在 Python 里怎么理解多态？
-  - 什么是鸭子类型？
-  - 鸭子类型
-  - super() 的作用是什么？
-  - __slots__ 的作用是什么？
-  - @property 是做什么的？有什么作用？
-  - Python 中为什么字符串拼接大量场景更推荐 join()？
 custom_questions:
 current_mode: brush
 current_batch_size: 5
 last_round_questions:
-  - 50. Python 中浅拷贝和深拷贝到底差在哪
+  - 16. __str__ 和 __repr__ 的区别与使用场景
+  - 17. set 和 list 的区别与适用场景
+  - 18. read()、readline()、readlines() 的区别
+  - 19. sorted() 和 list.sort() 的区别
+  - 20. global 和 nonlocal 的区别
 last_round_results:
   - question_issued_in_brush_mode
 

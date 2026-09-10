@@ -20,6 +20,12 @@
 - two_sum
 - valid_parentheses
 
+- 11. valid_parentheses
+- 12. longest_substring_without_repeat
+- 13. retry_decorator
+- 14. singleton
+- 15. context_manager
+- 16. timer_decorator
 ## 自动化测试题
 
 ## 测试开发面试题
@@ -41,6 +47,21 @@
 - 9. try / except / else / finally 分别有什么作用
 - 10. __new__ 和 __init__ 有什么区别，它们分别在什么时候执行
 
+- 52. 为什么不建议在遍历列表时直接删除元素
+- 53. Python 中常见的数据结构时间复杂度要掌握哪些
+- 54. Python 为什么适合写脚本和自动化
+- 55. Python 面试里说"可读性强"具体强在哪
+- 56. Python 的 LEGB 作用域规则是什么
+- 11. with 语句和上下文管理器的原理
+- 12. lambda 表达式的适用场景和限制
+- 13. 列表推导式和生成器表达式有什么区别
+- 14. 可变类型默认参数的问题与规避方式
+- 15. @classmethod 和 @staticmethod 的区别与使用场景
+- 16. __str__ 和 __repr__ 的区别与使用场景
+- 17. set 和 list 的区别与适用场景
+- 18. read()、readline()、readlines() 的区别
+- 19. sorted() 和 list.sort() 的区别
+- 20. global 和 nonlocal 的区别
 ## 性能测试面试题
 - 1. 什么是性能测试，性能测试的目的是什么
 - 2. 性能测试和功能测试有什么区别
