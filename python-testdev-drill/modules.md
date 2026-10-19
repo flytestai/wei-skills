@@ -71,6 +71,10 @@ For special modes:
 - `性能测试面试题`
 - `中间件面试题`
 - `数据库面试题`
+- `Linux面试题`
+- `HTTP协议与接口测试题`
+- `Selenium与UI自动化题`
+- `测试理论与用例设计题`
 
 ## Future Module Rule
 
@@ -84,4 +88,3 @@ Any newly created module must inherit the same routing rule:
 - every brushed question must be written into module history
 - repeated extraction should be avoided when history already contains the question
 - if all questions are exhausted, say so explicitly
-- `Linux面试题`

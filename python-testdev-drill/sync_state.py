@@ -125,6 +125,10 @@ def bank_file_questions(module_name):
         "中间件面试题": "MODULE_MIDDLEWARE_INTERVIEW.md",
         "数据库面试题": "MODULE_DATABASE_INTERVIEW.md",
         "Linux面试题": "MODULE_LINUX_INTERVIEW.md",
+        "HTTP协议与接口测试题": "MODULE_HTTP_API_TEST.md",
+        "Selenium与UI自动化题": "MODULE_SELENIUM_UI.md",
+        "测试理论与用例设计题": "MODULE_TEST_THEORY.md",
+        "测试场景与排查题": "MODULE_SCENARIO_DEBUG.md",
     }
     fname = bank_map.get(module_name)
     if not fname:
@@ -141,7 +145,6 @@ def bank_file_questions(module_name):
 
 def cmd_switch(args):
     content = read_file(STATE_FILE)
-    # 全局状态
     if args.module:
         content = re.sub(r"last_active_module: .*", "last_active_module: " + args.module, content)
     if args.mode:
@@ -150,7 +153,34 @@ def cmd_switch(args):
         content = re.sub(r"last_batch_size: \d+", "last_batch_size: %d" % args.batch, content)
         fields, _ = load_module(content, args.module)
         if fields is None:
-            raise SystemExit("模块不存在: " + args.module)
+            # 新模块：在 state.md 末尾自动创建段落（题库文件已在 bank_map 注册）
+            if bank_file_questions(args.module) is None:
+                raise SystemExit("模块不存在且未注册题库文件: " + args.module)
+            blank = ["## Module: " + args.module, "", "module_name: " + args.module]
+            for key in FIELD_ORDER:
+                if key == "module_name":
+                    continue
+                blank.append(key + ":")
+                if key == "current_mode":
+                    blank[-1] = "current_mode: brush"
+                elif key == "current_batch_size":
+                    blank[-1] = "current_batch_size: " + str(args.batch)
+                elif key == "completed_through":
+                    blank[-1] = "completed_through: 0"
+                elif key == "next_question":
+                    blank[-1] = "next_question: 1"
+            content = content.rstrip("\n") + "\n\n" + "\n".join(blank) + "\n"
+            # history.md 段落
+            hist_path = os.path.join(SKILL_DIR, "history.md")
+            hist = read_file(hist_path) if os.path.exists(hist_path) else "# 刷题历史\n"
+            if "## " + args.module not in hist:
+                if not hist.endswith("\n"):
+                    hist += "\n"
+                hist += "\n## " + args.module + "\n"
+                write_file(hist_path, hist)
+            write_file(STATE_FILE, content)
+            print("switched: module=%s mode=%s batch=%s (new module created)" % (args.module, args.mode, args.batch))
+            return
         fields["current_mode"] = args.mode if args.mode else fields.get("current_mode", "brush")
         fields["current_batch_size"] = str(args.batch)
         content = save_module(content, args.module, fields)

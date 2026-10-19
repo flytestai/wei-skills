@@ -8,27 +8,33 @@
 - 默认抽题时优先避开历史
 
 ## Python基础手写代码题
-- reverse_string
-- count_characters
-- dedup_list
-- merge_sorted_lists
-- sort_dict_by_value
-- binary_search
-- bubble_sort
-- quick_sort
-- fibonacci
-- two_sum
-- valid_parentheses
 
-- 11. valid_parentheses
-- 12. longest_substring_without_repeat
-- 13. retry_decorator
-- 14. singleton
-- 15. context_manager
-- 16. timer_decorator
+- 1. reverse_string
 ## 自动化测试题
 
 ## 测试开发面试题
+
+## 测试工程化与CI/CD
+
+- 1. 自动化测试如何无缝接入 CI/CD 流水线
+- 2. 流水线中自动化测试失败如何阻断构建与部署
+- 3. 如何解决测试环境不稳定导致的 CI 流水线误报
+- 4. 自动化测试在 CI 流水线中执行太慢，如何做并发加速
+- 5. 自动化测试如何优雅集成 Allure 报告并生成通知卡片
+- 6. 流水线中多环境测试配置与凭据安全管理
+- 7. 容器化测试执行：为什么要在 Docker 容器内跑测试
+- 8. 代码提交卡点（MR/PR Check）与定时全量回归的分层设计
+- 9. 什么是准出测试（Smoke Gate）与金丝雀灰度自动化验证
+- 10. GitLab CI (.gitlab-ci.yml) 与 Jenkinsfile 常用流水线语法实战
+## 中间件面试题
+
+## 数据库面试题
+
+## Linux面试题
+
+## Pytest框架
+
+## Python高阶编程
 
 ## Python编程基础理论面试题
 - 1. *args 和 **kwargs 的区别
@@ -62,6 +68,27 @@
 - 18. read()、readline()、readlines() 的区别
 - 19. sorted() 和 list.sort() 的区别
 - 20. global 和 nonlocal 的区别
+- 21. hasattr()、getattr()、setattr() 的区别与作用
+- 22. isinstance() 和 type() 的区别
+- 23. __name__ == '__main__' 的作用
+- 24. @staticmethod 为什么不需要 self
+- 25. strip()、lstrip()、rstrip() 的区别
+- 26. join() 和 + 拼接字符串的区别
+- 27. append() 和 extend() 的区别
+- 28. remove()、pop()、del 的区别
+- 29. sort() 和 sorted() 的区别
+- 30. tuple 和 list 有什么区别
+- 31. dict.get(key) 和 dict[key] 的区别
+- 32. lambda 和 def 有什么区别
+- 33. map() 和列表推导式有什么区别
+- 34. is 和 == 有什么区别
+- 35. mutable 和 immutable 对象有哪些，区别是什么
+- 36. Python 的参数传递方式怎么理解
+- 37. 迭代器协议是什么
+- 38. 为什么说生成器更省内存
+- 39. Python 的字典为什么查找快
+- 40. 面向对象三大特性是什么
+- 41. 什么是多态，在 Python 里怎么理解
 ## 性能测试面试题
 - 1. 什么是性能测试，性能测试的目的是什么
 - 2. 性能测试和功能测试有什么区别
@@ -84,3 +111,30 @@
 - 19. 性能测试通常什么时候做
 - 20. 性能测试和压力测试是一回事吗
 - 21. 性能测试中主要监控哪些指标
+
+## HTTP协议与接口测试题
+
+## Selenium与UI自动化题
+
+## 测试理论与用例设计题
+
+## 测试场景与排查题
+- 1. 用户反馈上传头像失败，怎么排查
+- 3. APP 偶然闪退怎么排查
+- 4. 网页打开白屏/加载慢，怎么排查
+- 5. 登录按钮点不动，怎么排查
+- 6. 压测 QPS 上不去，怎么排查
+- 7. 购物车模块怎么测试
+- 8. 微信朋友圈评论功能怎么测试
+- 9. 支付功能怎么测试
+- 10. 直播功能怎么测试
+- 11. 自动售货机怎么测试
+- 12. 手机消息推送怎么测试
+- 13. 需求都没写全，时间又紧，你怎么保证质量
+- 14. 开发说没时间修你这个低优先级 bug，怎么办
+- 15. 从版本发布到线上验证，测试还要做什么
+- 16. 怎么说服团队投入资源做自动化
+- 17. 你怎么评估测试排期
+- 18. 一个订单表，查每个用户最近一单
+- 19. 查询成绩排名（成绩表）
+- 20. 统计接口调用日志中每个接口的失败率

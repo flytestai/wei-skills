@@ -3,23 +3,33 @@ name: python-testdev-drill
 description: Reusable module-based drill workflow for Python test-development engineer interview practice, with batch drilling, per-module history, wrong-book with spaced review, favorites, custom bank, non-repeating extraction, report, and multiple drill modes.
 ---
 
-# Python TestDev Drill
+# Python TestDev Drill (上海中小厂 25K 定向)
 
-为 Python 测试开发工程师面试准备提供**长期刷题系统**：模块化练习、进度持久化、错题本（含艾宾浩斯复习）、收藏夹、自建题库、统计报表、批量刷题、做题评分。
+为 Python 测试开发工程师面试准备提供**长期刷题系统**。用户目标：上海中小厂、Python 自动化/测开、25K。**所有模块题目按中小厂面试侧重定向**：重实战轻架构，重「讲清楚自己的项目」，不考大厂级平台设计。
 
-## 模块清单
+## 模块清单（15 个，全部注册在 sync_state.py 的 bank_map）
 
-- Python基础手写代码题（100 题，13 分类）
-- Python编程基础理论面试题（100 题）
-- Python高阶编程
-- 自动化测试题
-- Pytest框架
-- 测试开发面试题
-- 测试工程化与CI/CD
-- 性能测试面试题
-- 中间件面试题
-- 数据库面试题
-- Linux面试题
+Python基础手写代码题(90，中小厂定向重写版) / Python编程基础理论面试题(100) / Python高阶编程(34) / 自动化测试题(10) / Pytest框架(20) / 测试开发面试题(15，STAR讲项目套路) / 测试工程化与CI/CD(10，重写版) / 性能测试(80) / 中间件(40) / 数据库(25) / Linux(40) / HTTP协议与接口测试(15) / Selenium与UI自动化(18) / 测试理论与用例设计(20) / 测试场景与排查(20)
+
+## 用户明确要求的答题风格（必须遵守）
+
+1. **题目精简**：一句话说清意图。
+2. **答案口语化**：面试现场口头 30~60 秒的量——一句核心结论、2~3 个要点/避坑、一句收尾。
+3. **手写代码题**：核心代码 10 行内、只给一种最简写法、附记忆口诀。
+4. **展示结构**：题号+标题 → 标签/难度/频率 → 题目 → 答案 → 口诀 → 进度。
+
+## 中小厂面试答题风格（用户 2026-09 明确要求，所有答案必须遵守）
+
+- **口语化表达**：像面试现场口头作答，说人话不堆术语；但用词要**专业准确**。
+- **逻辑思路清晰**：答案结构固定为「**一句核心结论 → 分点展开（编号或分块）→ 一句收尾/面试怎么答**」，先总后分。
+- **系统完整**：分块要覆盖面试官想听的维度（如排查题按“影响面→变更→依赖”链路，设计题按“功能→边界→异常→安全/性能”分块）。
+- **契台面试官想要的点**：中小厂面试官是测试主管，他要听的是实战经验和排查链路，不是教科书定义；每题要有「加分点/亮点句」（如说出面试官没想到的维度）和「避坑提醒」（如不能说的错误答法）。
+- **通俗易懂**：技术点配一句人话解释或类比，确保非入行人也能听懂。
+- 结尾保持口诀/一句话总结，方便记忆。
+
+## 题库文件映射（bank_map）
+
+新增模块需同时在 sync_state.py 的 bank_map 注册：HTTP协议与接口测试题→MODULE_HTTP_API_TEST.md；Selenium与UI自动化题→MODULE_SELENIUM_UI.md；测试理论与用例设计题→MODULE_TEST_THEORY.md；测试场景与排查题→MODULE_SCENARIO_DEBUG.md。switch 遇到未建 state 段的新模块会自动初始化（修改过 sync_state.py 支持）。
 
 以上均为独立一等模块，**禁止互相合并**。性能/中间件/数据库/Linux 题不得路由进「自动化测试题」。
 

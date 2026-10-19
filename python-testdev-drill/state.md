@@ -2,7 +2,7 @@
 
 version: 2
 
-last_active_module: Python基础手写代码题
+last_active_module: Python编程基础理论面试题
 last_active_mode: brush
 last_batch_size: 1
 answer_visibility: visible_in_brush_mode
@@ -10,46 +10,23 @@ answer_visibility: visible_in_brush_mode
 ## Module: Python基础手写代码题
 
 module_name: Python基础手写代码题
-completed_through: 15
-next_question: 16
+completed_through: 1
+next_question: 2
 asked_questions:
   - 1. reverse_string
-  - 2. count_characters
-  - 3. dedup_list
-  - 4. merge_sorted_lists
-  - 5. sort_dict_by_value
-  - 6. binary_search
-  - 7. bubble_sort
-  - 8. quick_sort
-  - 9. fibonacci
-  - 10. two_sum
-  - 11. valid_parentheses
-  - 12. longest_substring_without_repeat
-  - 13. retry_decorator
-  - 14. singleton
-  - 15. context_manager
 mistakes:
-  - dedup_list | 逻辑正确，最后一行未调用函数直接打印原列表 | 2026-09-09 | 错1次 | 复习:2026-09-10
-  - merge_sorted_lists | append写成整个列表、j+=2、extend未切片、缺return；重做后全对 | 2026-09-09 | 错1次 | 复习:2026-09-10
-  - sort_dict_by_value | sorted的key=关键字遗漏、缺dict()转换 | 2026-09-09 | 错1次 | 复习:2026-09-10
-  - binary_search | 首答mid漏括号、else误写left；重做后全对 | 2026-09-09 | 错1次 | 复习:2026-09-10
-  - two_sum | set/dict用混：应存值→下标映射；targe拼写错；存补数方向反。口诀"查补数、存自己" | 2026-09-09 | 错1次 | 复习:2026-09-10
-  - 12. longest_substring_without_repeat | 只扫描到第一次重复就break，等于只求了从下标0开始的前缀无重复长度；pwwkew 应返回3实际返回2。正确思路是滑动窗口：重复时收缩左边界继续扫，而不是整体停止 | 2026-09-10 | 错1次 | 复习:2026-09-11
-  - 13. retry_decorator | 直接看答案：带参数装饰器（三层结构）不熟练 | 2026-09-10 | 错1次 | 复习:2026-09-11
-  - 14. singleton | 直接看答案：单例模式写法待巩固 | 2026-09-10 | 错1次 | 复习:2026-09-11
-  - 15. context_manager | 直接看答案：__enter__/__exit__ 自定义上下文管理器待巩固 | 2026-09-10 | 错1次 | 复习:2026-09-11
 answer_given_questions:
+  - 1. reverse_string
 history_questions:
-  - 12. longest_substring_without_repeat
-  - 13. retry_decorator
-  - 14. singleton
-  - 15. context_manager
+  - 1. reverse_string
 favorite_questions:
 custom_questions:
 current_mode: brush
 current_batch_size: 1
 last_round_questions:
+  - 1. reverse_string
 last_round_results:
+  - user_answered_correctly
 
 ## Module: Python高阶编程
 
@@ -335,7 +312,7 @@ answer_given_questions:
 history_questions:
 favorite_questions:
 custom_questions:
-current_mode: module
+current_mode: brush
 current_batch_size: 1
 last_round_questions:
 last_round_results:
@@ -343,8 +320,8 @@ last_round_results:
 ## Module: Python编程基础理论面试题
 
 module_name: Python编程基础理论面试题
-completed_through: 20
-next_question: 21
+completed_through: 41
+next_question: 42
 asked_questions:
   - 1. *args 和 **kwargs 的区别
   - 2. 深拷贝和浅拷贝的区别
@@ -366,8 +343,50 @@ asked_questions:
   - 18. read()、readline()、readlines() 的区别
   - 19. sorted() 和 list.sort() 的区别
   - 20. global 和 nonlocal 的区别
+  - 21. hasattr()、getattr()、setattr() 的区别与作用
+  - 22. isinstance() 和 type() 的区别
+  - 23. __name__ == '__main__' 的作用
+  - 24. @staticmethod 为什么不需要 self
+  - 25. strip()、lstrip()、rstrip() 的区别
+  - 26. join() 和 + 拼接字符串的区别
+  - 27. append() 和 extend() 的区别
+  - 28. remove()、pop()、del 的区别
+  - 29. sort() 和 sorted() 的区别
+  - 30. tuple 和 list 有什么区别
+  - 31. dict.get(key) 和 dict[key] 的区别
+  - 32. lambda 和 def 有什么区别
+  - 33. map() 和列表推导式有什么区别
+  - 34. is 和 == 有什么区别
+  - 35. mutable 和 immutable 对象有哪些，区别是什么
+  - 36. Python 的参数传递方式怎么理解
+  - 37. 迭代器协议是什么
+  - 38. 为什么说生成器更省内存
+  - 39. Python 的字典为什么查找快
+  - 40. 面向对象三大特性是什么
+  - 41. 什么是多态，在 Python 里怎么理解
 mistakes:
 answer_given_questions:
+  - 21. hasattr()、getattr()、setattr() 的区别与作用
+  - 22. isinstance() 和 type() 的区别
+  - 23. __name__ == '__main__' 的作用
+  - 24. @staticmethod 为什么不需要 self
+  - 25. strip()、lstrip()、rstrip() 的区别
+  - 26. join() 和 + 拼接字符串的区别
+  - 27. append() 和 extend() 的区别
+  - 28. remove()、pop()、del 的区别
+  - 29. sort() 和 sorted() 的区别
+  - 30. tuple 和 list 有什么区别
+  - 31. dict.get(key) 和 dict[key] 的区别
+  - 32. lambda 和 def 有什么区别
+  - 33. map() 和列表推导式有什么区别
+  - 34. is 和 == 有什么区别
+  - 35. mutable 和 immutable 对象有哪些，区别是什么
+  - 36. Python 的参数传递方式怎么理解
+  - 37. 迭代器协议是什么
+  - 38. 为什么说生成器更省内存
+  - 39. Python 的字典为什么查找快
+  - 40. 面向对象三大特性是什么
+  - 41. 什么是多态，在 Python 里怎么理解
 history_questions:
   - 1. *args 和 **kwargs 的区别
   - 2. 深拷贝和浅拷贝的区别
@@ -389,22 +408,87 @@ history_questions:
   - 18. read()、readline()、readlines() 的区别
   - 19. sorted() 和 list.sort() 的区别
   - 20. global 和 nonlocal 的区别
+  - 21. hasattr()、getattr()、setattr() 的区别与作用
+  - 22. isinstance() 和 type() 的区别
+  - 23. __name__ == '__main__' 的作用
+  - 24. @staticmethod 为什么不需要 self
+  - 25. strip()、lstrip()、rstrip() 的区别
+  - 26. join() 和 + 拼接字符串的区别
+  - 27. append() 和 extend() 的区别
+  - 28. remove()、pop()、del 的区别
+  - 29. sort() 和 sorted() 的区别
+  - 30. tuple 和 list 有什么区别
+  - 31. dict.get(key) 和 dict[key] 的区别
+  - 32. lambda 和 def 有什么区别
+  - 33. map() 和列表推导式有什么区别
+  - 34. is 和 == 有什么区别
+  - 35. mutable 和 immutable 对象有哪些，区别是什么
+  - 36. Python 的参数传递方式怎么理解
+  - 37. 迭代器协议是什么
+  - 38. 为什么说生成器更省内存
+  - 39. Python 的字典为什么查找快
+  - 40. 面向对象三大特性是什么
+  - 41. 什么是多态，在 Python 里怎么理解
 favorite_questions:
 custom_questions:
 current_mode: brush
-current_batch_size: 5
+current_batch_size: 1
 last_round_questions:
-  - 16. __str__ 和 __repr__ 的区别与使用场景
-  - 17. set 和 list 的区别与适用场景
-  - 18. read()、readline()、readlines() 的区别
-  - 19. sorted() 和 list.sort() 的区别
-  - 20. global 和 nonlocal 的区别
+  - 41. 什么是多态，在 Python 里怎么理解
 last_round_results:
-  - question_issued_in_brush_mode
+  - user_answered_correctly
 
 ## Module: 测试工程化与CI/CD
 
 module_name: 测试工程化与CI/CD
+completed_through: 10
+next_question: 11
+asked_questions:
+  - 1. 自动化测试如何无缝接入 CI/CD 流水线
+  - 2. 流水线中自动化测试失败如何阻断构建与部署
+  - 3. 如何解决测试环境不稳定导致的 CI 流水线误报
+  - 4. 自动化测试在 CI 流水线中执行太慢，如何做并发加速
+  - 5. 自动化测试如何优雅集成 Allure 报告并生成通知卡片
+  - 6. 流水线中多环境测试配置与凭据安全管理
+  - 7. 容器化测试执行：为什么要在 Docker 容器内跑测试
+  - 8. 代码提交卡点（MR/PR Check）与定时全量回归的分层设计
+  - 9. 什么是准出测试（Smoke Gate）与金丝雀灰度自动化验证
+  - 10. GitLab CI (.gitlab-ci.yml) 与 Jenkinsfile 常用流水线语法实战
+mistakes:
+answer_given_questions:
+  - 1. 自动化测试如何无缝接入 CI/CD 流水线
+  - 2. 流水线中自动化测试失败如何阻断构建与部署
+  - 3. 如何解决测试环境不稳定导致的 CI 流水线误报
+  - 4. 自动化测试在 CI 流水线中执行太慢，如何做并发加速
+  - 5. 自动化测试如何优雅集成 Allure 报告并生成通知卡片
+  - 6. 流水线中多环境测试配置与凭据安全管理
+  - 7. 容器化测试执行：为什么要在 Docker 容器内跑测试
+  - 8. 代码提交卡点（MR/PR Check）与定时全量回归的分层设计
+  - 9. 什么是准出测试（Smoke Gate）与金丝雀灰度自动化验证
+  - 10. GitLab CI (.gitlab-ci.yml) 与 Jenkinsfile 常用流水线语法实战
+history_questions:
+  - 1. 自动化测试如何无缝接入 CI/CD 流水线
+  - 2. 流水线中自动化测试失败如何阻断构建与部署
+  - 3. 如何解决测试环境不稳定导致的 CI 流水线误报
+  - 4. 自动化测试在 CI 流水线中执行太慢，如何做并发加速
+  - 5. 自动化测试如何优雅集成 Allure 报告并生成通知卡片
+  - 6. 流水线中多环境测试配置与凭据安全管理
+  - 7. 容器化测试执行：为什么要在 Docker 容器内跑测试
+  - 8. 代码提交卡点（MR/PR Check）与定时全量回归的分层设计
+  - 9. 什么是准出测试（Smoke Gate）与金丝雀灰度自动化验证
+  - 10. GitLab CI (.gitlab-ci.yml) 与 Jenkinsfile 常用流水线语法实战
+favorite_questions:
+custom_questions:
+current_mode: brush
+current_batch_size: 1
+last_round_questions:
+  - 10. GitLab CI (.gitlab-ci.yml) 与 Jenkinsfile 常用流水线语法实战
+last_round_results:
+  - user_answered_correctly
+
+## Module: HTTP协议与接口测试题
+
+module_name: HTTP协议与接口测试题
 completed_through: 0
 next_question: 1
 asked_questions:
@@ -413,7 +497,115 @@ answer_given_questions:
 history_questions:
 favorite_questions:
 custom_questions:
-current_mode: module
+current_mode: brush
 current_batch_size: 1
 last_round_questions:
 last_round_results:
+
+## Module: Selenium与UI自动化题
+
+module_name: Selenium与UI自动化题
+completed_through: 0
+next_question: 1
+asked_questions:
+mistakes:
+answer_given_questions:
+history_questions:
+favorite_questions:
+custom_questions:
+current_mode: brush
+current_batch_size: 1
+last_round_questions:
+last_round_results:
+
+## Module: 测试理论与用例设计题
+
+module_name: 测试理论与用例设计题
+completed_through: 0
+next_question: 1
+asked_questions:
+mistakes:
+answer_given_questions:
+history_questions:
+favorite_questions:
+custom_questions:
+current_mode: brush
+current_batch_size: 1
+last_round_questions:
+last_round_results:
+
+## Module: 测试场景与排查题
+
+module_name: 测试场景与排查题
+completed_through: 20
+next_question: 21
+asked_questions:
+  - 1. 用户反馈上传头像失败，怎么排查
+  - 3. APP 偶然闪退怎么排查
+  - 4. 网页打开白屏/加载慢，怎么排查
+  - 5. 登录按钮点不动，怎么排查
+  - 6. 压测 QPS 上不去，怎么排查
+  - 7. 购物车模块怎么测试
+  - 8. 微信朋友圈评论功能怎么测试
+  - 9. 支付功能怎么测试
+  - 10. 直播功能怎么测试
+  - 11. 自动售货机怎么测试
+  - 12. 手机消息推送怎么测试
+  - 13. 需求都没写全，时间又紧，你怎么保证质量
+  - 14. 开发说没时间修你这个低优先级 bug，怎么办
+  - 15. 从版本发布到线上验证，测试还要做什么
+  - 16. 怎么说服团队投入资源做自动化
+  - 17. 你怎么评估测试排期
+  - 18. 一个订单表，查每个用户最近一单
+  - 19. 查询成绩排名（成绩表）
+  - 20. 统计接口调用日志中每个接口的失败率
+mistakes:
+answer_given_questions:
+  - 1. 用户反馈上传头像失败，怎么排查
+  - 3. APP 偶然闪退怎么排查
+  - 4. 网页打开白屏/加载慢，怎么排查
+  - 5. 登录按钮点不动，怎么排查
+  - 6. 压测 QPS 上不去，怎么排查
+  - 7. 购物车模块怎么测试
+  - 8. 微信朋友圈评论功能怎么测试
+  - 9. 支付功能怎么测试
+  - 10. 直播功能怎么测试
+  - 11. 自动售货机怎么测试
+  - 12. 手机消息推送怎么测试
+  - 13. 需求都没写全，时间又紧，你怎么保证质量
+  - 14. 开发说没时间修你这个低优先级 bug，怎么办
+  - 15. 从版本发布到线上验证，测试还要做什么
+  - 16. 怎么说服团队投入资源做自动化
+  - 17. 你怎么评估测试排期
+  - 18. 一个订单表，查每个用户最近一单
+  - 19. 查询成绩排名（成绩表）
+  - 20. 统计接口调用日志中每个接口的失败率
+history_questions:
+  - 1. 用户反馈上传头像失败，怎么排查
+  - 3. APP 偶然闪退怎么排查
+  - 4. 网页打开白屏/加载慢，怎么排查
+  - 5. 登录按钮点不动，怎么排查
+  - 6. 压测 QPS 上不去，怎么排查
+  - 7. 购物车模块怎么测试
+  - 8. 微信朋友圈评论功能怎么测试
+  - 9. 支付功能怎么测试
+  - 10. 直播功能怎么测试
+  - 11. 自动售货机怎么测试
+  - 12. 手机消息推送怎么测试
+  - 13. 需求都没写全，时间又紧，你怎么保证质量
+  - 14. 开发说没时间修你这个低优先级 bug，怎么办
+  - 15. 从版本发布到线上验证，测试还要做什么
+  - 16. 怎么说服团队投入资源做自动化
+  - 17. 你怎么评估测试排期
+  - 18. 一个订单表，查每个用户最近一单
+  - 19. 查询成绩排名（成绩表）
+  - 20. 统计接口调用日志中每个接口的失败率
+favorite_questions:
+custom_questions:
+current_mode: brush
+current_batch_size: 1
+last_round_questions:
+  - 20. 统计接口调用日志中每个接口的失败率
+last_round_results:
+  - user_answered_correctly
+
