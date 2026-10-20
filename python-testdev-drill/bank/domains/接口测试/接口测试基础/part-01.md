@@ -1548,7 +1548,7 @@ Token通常与JWT（JSON Web Token）结合使用，JWT包含头部、载荷和�
 
 ```text
 有很多字段，比如：
-Cookie ： JSESSIONID=73477f64-df1d-4423-81ea-541a0e1620ca
+Cookie ： JSESSIONID=example-session-id
 connection： keep-alive
 
 User-Agent：Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0

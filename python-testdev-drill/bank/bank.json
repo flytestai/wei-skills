@@ -60778,7 +60778,7 @@
        "difficulty": "简单",
        "question": "一个http请求的header里面包含哪些内容？",
        "options": [],
-       "answer": "有很多字段，比如：\nCookie ： JSESSIONID=73477f64-df1d-4423-81ea-541a0e1620ca\nconnection： keep-alive\n\nUser-Agent：Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0\n还要一些我们开发自己定义的字段，比如authorization等。",
+       "answer": "有很多字段，比如：\nCookie ： JSESSIONID=example-session-id\nconnection： keep-alive\n\nUser-Agent：Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0\n还要一些我们开发自己定义的字段，比如authorization等。",
        "answer_detail": "",
        "analysis": "【核心考点】 HTTP协议 请求头字段\n【参考答案要点】\nHTTP请求头包含多个字段，常见的有：\nCookie：携带会话标识，如JSESSIONID。\nConnection：控制连接管理，如keep-alive。\nUser-Agent：标识客户端类型和版本。\n自定义字段：如Authorization用于认证，Content-Type指定请求体格式。\n【面试角度】\n回答时建议举例说明，如“在测试中，我们通过修改User-Agent模拟不同浏览器”，展示对HTTP协议的理解和应用。\n【延伸知识】\nHTTP请求头还包括Host、Accept、Referer等。面试中常结合抓包工具（如Fiddler、Wireshark）提问，考察实际调试能力。",
        "answer_generated": false,
