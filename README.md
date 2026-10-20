@@ -1,6 +1,6 @@
 # Wei Skills
 
-OpenClaw / Hermes 技能集合，聚焦 **刷题、课程教学、业务分析** 三类可复用技能。
+OpenClaw / Hermes 技能集合，聚焦 **刷题、课程教学、业务分析、消息监控** 四类可复用技能。
 
 ## 技能列表
 
@@ -71,6 +71,32 @@ Python 测试开发工程师面试刷题系统。
 
 ---
 
+### 4. feishu-vip-monitor
+飞书群 VIP 关键词监控转发。轮询指定飞书群，识别带关键词的消息，连同配图转发到微信，并用消息水位杜绝重复消费。
+
+**能力特性**
+- 用 `message_position` 水位消费消息，重启、崩溃都不会重复推送
+- 三档抖动轮询，避开飞书风控：交易期 27~47s / 白天 95~155s / 夜间 9~12min
+- 多页回溯**按水位早停**——飞书 `has_more` 恒为 `true`，不能当停止条件
+- 周期补偿 `sleep(max(5, target - elapsed))`，拉取耗时不会累积成轮询漂移
+- cron 每分钟巡检，心跳分时段阈值（180s / 600s / 1200s），超时强杀重启
+- token 保活常驻：`refresh_token` 只能用一次，必须提前轮换
+- 推送重试、告警冷却持久化、日志轮转、配图缓存回收
+- 文本气泡排版：标题 + 图标 + 浅色短虚线 + 正文，手机/电脑版微信均正确换行
+
+**主要踩坑（已在实现中修复）**
+- `HERMES_HOME` 未注入 → lark-cli 返回 `not_configured`，进程在跑但一条收不到
+- `pgrep -f '[w]u2198'` 方括号被当字面字符类，既防不了自匹配也匹配不到进程
+- `flock -n || exit 0` 导致：持锁者正是本脚本拉起的进程时误判为"已在运行"
+- `RotatingFileHandler` + `StreamHandler` + `nohup` 同文件，每条日志写两遍
+
+**典型用法**
+- `监控这个飞书群，有真爱粉可见的消息就转发给我`
+- `看看监控进程是不是假死了`
+- `飞书 token 快过期了，帮我保活`
+
+---
+
 ## 安装方式
 
 ```bash
@@ -78,7 +104,10 @@ git clone https://github.com/flytestai/wei-skills.git
 cp -r wei-skills/python-testdev-drill ~/.openclaw-autoclaw/skills/
 cp -r wei-skills/chat-course-coach ~/.openclaw-autoclaw/skills/
 cp -r wei-skills/caipiao-analyzer ~/.openclaw-autoclaw/skills/
+cp -r wei-skills/feishu-vip-monitor ~/hermes/shared/skills/
 ```
+
+> `feishu-vip-monitor` 是 Hermes skill，装到 Hermes 的 skills 目录；其余三个装到 OpenClaw。
 
 ## 使用说明
 
@@ -102,6 +131,12 @@ cp -r wei-skills/caipiao-analyzer ~/.openclaw-autoclaw/skills/
 - `最近开奖历史`
 - `帮我推算号码`
 - `回测最近100期`
+
+### 飞书群监控
+> 依赖已授权的 `lark-cli`，且必须注入 `HERMES_HOME`
+
+- `监控这个飞书群，有 VIP 消息就转发给我`
+- `监控进程还在跑吗`
 
 ## 仓库定位
 
