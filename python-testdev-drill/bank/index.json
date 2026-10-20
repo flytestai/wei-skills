@@ -1,0 +1,1608 @@
+{
+ "meta": {
+  "name": "Python 测试开发全量分级题库",
+  "version": "2026-10-20",
+  "total_questions": 7478,
+  "domains": 18,
+  "topics": 102,
+  "types": {
+   "简答": 5932,
+   "填空": 160,
+   "单选": 1284,
+   "多选": 99,
+   "组合": 2,
+   "判断": 1
+  },
+  "difficulties": {
+   "较难": 1059,
+   "简单": 2731,
+   "中等": 2600,
+   "入门": 972,
+   "未标注": 52,
+   "困难": 64
+  },
+  "generated_answers": 43,
+  "generated_analyses": 371,
+  "note": "按领域和专题组织；同一题干可能在多个知识点的原始记录中重复出现，为保证题量未删除。"
+ },
+ "domains": [
+  {
+   "name": "功能测试",
+   "slug": "功能测试",
+   "question_count": 2301,
+   "topics": [
+    {
+     "name": "测试计划与文档",
+     "slug": "测试计划与文档",
+     "question_count": 376,
+     "parts": [
+      {
+       "file": "domains/功能测试/测试计划与文档/part-01.md",
+       "first_id": "Q000012",
+       "last_id": "Q000331",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/测试计划与文档/part-02.md",
+       "first_id": "Q000333",
+       "last_id": "Q000292",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/测试计划与文档/part-03.md",
+       "first_id": "Q000293",
+       "last_id": "Q000367",
+       "count": 76
+      }
+     ]
+    },
+    {
+     "name": "基础概念",
+     "slug": "基础概念",
+     "question_count": 353,
+     "parts": [
+      {
+       "file": "domains/功能测试/基础概念/part-01.md",
+       "first_id": "Q000384",
+       "last_id": "Q000469",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/基础概念/part-02.md",
+       "first_id": "Q000472",
+       "last_id": "Q000486",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/基础概念/part-03.md",
+       "first_id": "Q000487",
+       "last_id": "Q000657",
+       "count": 53
+      }
+     ]
+    },
+    {
+     "name": "测试用例",
+     "slug": "测试用例",
+     "question_count": 341,
+     "parts": [
+      {
+       "file": "domains/功能测试/测试用例/part-01.md",
+       "first_id": "Q000730",
+       "last_id": "Q000770",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/测试用例/part-02.md",
+       "first_id": "Q000772",
+       "last_id": "Q000903",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/测试用例/part-03.md",
+       "first_id": "Q000906",
+       "last_id": "Q001040",
+       "count": 41
+      }
+     ]
+    },
+    {
+     "name": "缺陷（Bug）管理",
+     "slug": "缺陷（Bug）管理",
+     "question_count": 283,
+     "parts": [
+      {
+       "file": "domains/功能测试/缺陷（Bug）管理/part-01.md",
+       "first_id": "Q001072",
+       "last_id": "Q001161",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/缺陷（Bug）管理/part-02.md",
+       "first_id": "Q001162",
+       "last_id": "Q001330",
+       "count": 133
+      }
+     ]
+    },
+    {
+     "name": "测试类型",
+     "slug": "测试类型",
+     "question_count": 259,
+     "parts": [
+      {
+       "file": "domains/功能测试/测试类型/part-01.md",
+       "first_id": "Q001372",
+       "last_id": "Q001552",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/测试类型/part-02.md",
+       "first_id": "Q001553",
+       "last_id": "Q001612",
+       "count": 109
+      }
+     ]
+    },
+    {
+     "name": "综合/其他",
+     "slug": "综合／其他",
+     "question_count": 218,
+     "parts": [
+      {
+       "file": "domains/功能测试/综合／其他/part-01.md",
+       "first_id": "Q001613",
+       "last_id": "Q001628",
+       "count": 150
+      },
+      {
+       "file": "domains/功能测试/综合／其他/part-02.md",
+       "first_id": "Q001629",
+       "last_id": "Q001821",
+       "count": 68
+      }
+     ]
+    },
+    {
+     "name": "软件开发模型与流程",
+     "slug": "软件开发模型与流程",
+     "question_count": 130,
+     "parts": [
+      {
+       "file": "domains/功能测试/软件开发模型与流程/part-01.md",
+       "first_id": "Q001837",
+       "last_id": "Q001872",
+       "count": 130
+      }
+     ]
+    },
+    {
+     "name": "专项测试",
+     "slug": "专项测试",
+     "question_count": 127,
+     "parts": [
+      {
+       "file": "domains/功能测试/专项测试/part-01.md",
+       "first_id": "Q001964",
+       "last_id": "Q002087",
+       "count": 127
+      }
+     ]
+    },
+    {
+     "name": "软件质量保证",
+     "slug": "软件质量保证",
+     "question_count": 122,
+     "parts": [
+      {
+       "file": "domains/功能测试/软件质量保证/part-01.md",
+       "first_id": "Q002102",
+       "last_id": "Q002147",
+       "count": 122
+      }
+     ]
+    },
+    {
+     "name": "WEB功能测试",
+     "slug": "WEB功能测试",
+     "question_count": 37,
+     "parts": [
+      {
+       "file": "domains/功能测试/WEB功能测试/part-01.md",
+       "first_id": "Q002211",
+       "last_id": "Q002215",
+       "count": 37
+      }
+     ]
+    },
+    {
+     "name": "测试工具与框架",
+     "slug": "测试工具与框架",
+     "question_count": 37,
+     "parts": [
+      {
+       "file": "domains/功能测试/测试工具与框架/part-01.md",
+       "first_id": "Q002250",
+       "last_id": "Q002249",
+       "count": 37
+      }
+     ]
+    },
+    {
+     "name": "白盒测试",
+     "slug": "白盒测试",
+     "question_count": 10,
+     "parts": [
+      {
+       "file": "domains/功能测试/白盒测试/part-01.md",
+       "first_id": "Q002284",
+       "last_id": "Q002287",
+       "count": 10
+      }
+     ]
+    },
+    {
+     "name": "功能测试",
+     "slug": "功能测试",
+     "question_count": 4,
+     "parts": [
+      {
+       "file": "domains/功能测试/功能测试/part-01.md",
+       "first_id": "Q002296",
+       "last_id": "Q002297",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "name": "单元测试",
+     "slug": "单元测试",
+     "question_count": 2,
+     "parts": [
+      {
+       "file": "domains/功能测试/单元测试/part-01.md",
+       "first_id": "Q002298",
+       "last_id": "Q002299",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "name": "测试方法",
+     "slug": "测试方法",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/功能测试/测试方法/part-01.md",
+       "first_id": "Q002300",
+       "last_id": "Q002300",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "评审与静态分析",
+     "slug": "评审与静态分析",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/功能测试/评审与静态分析/part-01.md",
+       "first_id": "Q002301",
+       "last_id": "Q002301",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "自动化",
+   "slug": "自动化",
+   "question_count": 905,
+   "topics": [
+    {
+     "name": "UI自动化",
+     "slug": "UI自动化",
+     "question_count": 413,
+     "parts": [
+      {
+       "file": "domains/自动化/UI自动化/part-01.md",
+       "first_id": "Q002305",
+       "last_id": "Q002595",
+       "count": 150
+      },
+      {
+       "file": "domains/自动化/UI自动化/part-02.md",
+       "first_id": "Q002598",
+       "last_id": "Q002516",
+       "count": 150
+      },
+      {
+       "file": "domains/自动化/UI自动化/part-03.md",
+       "first_id": "Q002517",
+       "last_id": "Q002648",
+       "count": 113
+      }
+     ]
+    },
+    {
+     "name": "自动化测试基础",
+     "slug": "自动化测试基础",
+     "question_count": 275,
+     "parts": [
+      {
+       "file": "domains/自动化/自动化测试基础/part-01.md",
+       "first_id": "Q002715",
+       "last_id": "Q002846",
+       "count": 150
+      },
+      {
+       "file": "domains/自动化/自动化测试基础/part-02.md",
+       "first_id": "Q002847",
+       "last_id": "Q002768",
+       "count": 125
+      }
+     ]
+    },
+    {
+     "name": "Selenium",
+     "slug": "Selenium",
+     "question_count": 191,
+     "parts": [
+      {
+       "file": "domains/自动化/Selenium/part-01.md",
+       "first_id": "Q002994",
+       "last_id": "Q003109",
+       "count": 150
+      },
+      {
+       "file": "domains/自动化/Selenium/part-02.md",
+       "first_id": "Q003113",
+       "last_id": "Q003178",
+       "count": 41
+      }
+     ]
+    },
+    {
+     "name": "Appium",
+     "slug": "Appium",
+     "question_count": 14,
+     "parts": [
+      {
+       "file": "domains/自动化/Appium/part-01.md",
+       "first_id": "Q003181",
+       "last_id": "Q003188",
+       "count": 14
+      }
+     ]
+    },
+    {
+     "name": "App测试",
+     "slug": "App测试",
+     "question_count": 12,
+     "parts": [
+      {
+       "file": "domains/自动化/App测试/part-01.md",
+       "first_id": "Q003196",
+       "last_id": "Q003201",
+       "count": 12
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "测试开发",
+   "slug": "测试开发",
+   "question_count": 792,
+   "topics": [
+    {
+     "name": "Python编程基础",
+     "slug": "Python编程基础",
+     "question_count": 489,
+     "parts": [
+      {
+       "file": "domains/测试开发/Python编程基础/part-01.md",
+       "first_id": "Q003209",
+       "last_id": "Q003336",
+       "count": 150
+      },
+      {
+       "file": "domains/测试开发/Python编程基础/part-02.md",
+       "first_id": "Q003339",
+       "last_id": "Q003692",
+       "count": 150
+      },
+      {
+       "file": "domains/测试开发/Python编程基础/part-03.md",
+       "first_id": "Q003695",
+       "last_id": "Q003432",
+       "count": 150
+      },
+      {
+       "file": "domains/测试开发/Python编程基础/part-04.md",
+       "first_id": "Q003436",
+       "last_id": "Q003546",
+       "count": 39
+      }
+     ]
+    },
+    {
+     "name": "Java编程",
+     "slug": "Java编程",
+     "question_count": 121,
+     "parts": [
+      {
+       "file": "domains/测试开发/Java编程/part-01.md",
+       "first_id": "Q003703",
+       "last_id": "Q003812",
+       "count": 121
+      }
+     ]
+    },
+    {
+     "name": "测开能力",
+     "slug": "测开能力",
+     "question_count": 113,
+     "parts": [
+      {
+       "file": "domains/测试开发/测开能力/part-01.md",
+       "first_id": "Q003822",
+       "last_id": "Q003929",
+       "count": 113
+      }
+     ]
+    },
+    {
+     "name": "平台开发",
+     "slug": "平台开发",
+     "question_count": 69,
+     "parts": [
+      {
+       "file": "domains/测试开发/平台开发/part-01.md",
+       "first_id": "Q003932",
+       "last_id": "Q003998",
+       "count": 69
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "接口测试",
+   "slug": "接口测试",
+   "question_count": 422,
+   "topics": [
+    {
+     "name": "接口测试基础",
+     "slug": "接口测试基础",
+     "question_count": 146,
+     "parts": [
+      {
+       "file": "domains/接口测试/接口测试基础/part-01.md",
+       "first_id": "Q004000",
+       "last_id": "Q004066",
+       "count": 146
+      }
+     ]
+    },
+    {
+     "name": "接口测试实践",
+     "slug": "接口测试实践",
+     "question_count": 131,
+     "parts": [
+      {
+       "file": "domains/接口测试/接口测试实践/part-01.md",
+       "first_id": "Q004210",
+       "last_id": "Q004245",
+       "count": 131
+      }
+     ]
+    },
+    {
+     "name": "接口自动化",
+     "slug": "接口自动化",
+     "question_count": 95,
+     "parts": [
+      {
+       "file": "domains/接口测试/接口自动化/part-01.md",
+       "first_id": "Q004284",
+       "last_id": "Q004368",
+       "count": 95
+      }
+     ]
+    },
+    {
+     "name": "协议与工具",
+     "slug": "协议与工具",
+     "question_count": 49,
+     "parts": [
+      {
+       "file": "domains/接口测试/协议与工具/part-01.md",
+       "first_id": "Q004384",
+       "last_id": "Q004411",
+       "count": 49
+      }
+     ]
+    },
+    {
+     "name": "综合/其他",
+     "slug": "综合／其他",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/接口测试/综合／其他/part-01.md",
+       "first_id": "Q004420",
+       "last_id": "Q004420",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Linux",
+   "slug": "Linux",
+   "question_count": 413,
+   "topics": [
+    {
+     "name": "Linux基础命令",
+     "slug": "Linux基础命令",
+     "question_count": 313,
+     "parts": [
+      {
+       "file": "domains/Linux/Linux基础命令/part-01.md",
+       "first_id": "Q004421",
+       "last_id": "Q004470",
+       "count": 150
+      },
+      {
+       "file": "domains/Linux/Linux基础命令/part-02.md",
+       "first_id": "Q004471",
+       "last_id": "Q004687",
+       "count": 150
+      },
+      {
+       "file": "domains/Linux/Linux基础命令/part-03.md",
+       "first_id": "Q004688",
+       "last_id": "Q004634",
+       "count": 13
+      }
+     ]
+    },
+    {
+     "name": "环境搭建与部署",
+     "slug": "环境搭建与部署",
+     "question_count": 51,
+     "parts": [
+      {
+       "file": "domains/Linux/环境搭建与部署/part-01.md",
+       "first_id": "Q004738",
+       "last_id": "Q004779",
+       "count": 51
+      }
+     ]
+    },
+    {
+     "name": "日志与问题排查",
+     "slug": "日志与问题排查",
+     "question_count": 31,
+     "parts": [
+      {
+       "file": "domains/Linux/日志与问题排查/part-01.md",
+       "first_id": "Q004789",
+       "last_id": "Q004804",
+       "count": 31
+      }
+     ]
+    },
+    {
+     "name": "Shell与脚本",
+     "slug": "Shell与脚本",
+     "question_count": 18,
+     "parts": [
+      {
+       "file": "domains/Linux/Shell与脚本/part-01.md",
+       "first_id": "Q004816",
+       "last_id": "Q004825",
+       "count": 18
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "HR面试",
+   "slug": "HR面试",
+   "question_count": 335,
+   "topics": [
+    {
+     "name": "HR面试&职业规划",
+     "slug": "HR面试&职业规划",
+     "question_count": 214,
+     "parts": [
+      {
+       "file": "domains/HR面试/HR面试&职业规划/part-01.md",
+       "first_id": "Q004834",
+       "last_id": "Q005035",
+       "count": 150
+      },
+      {
+       "file": "domains/HR面试/HR面试&职业规划/part-02.md",
+       "first_id": "Q005037",
+       "last_id": "Q004998",
+       "count": 64
+      }
+     ]
+    },
+    {
+     "name": "个人素质",
+     "slug": "个人素质",
+     "question_count": 57,
+     "parts": [
+      {
+       "file": "domains/HR面试/个人素质/part-01.md",
+       "first_id": "Q005048",
+       "last_id": "Q005101",
+       "count": 57
+      }
+     ]
+    },
+    {
+     "name": "经验背景",
+     "slug": "经验背景",
+     "question_count": 31,
+     "parts": [
+      {
+       "file": "domains/HR面试/经验背景/part-01.md",
+       "first_id": "Q005105",
+       "last_id": "Q005111",
+       "count": 31
+      }
+     ]
+    },
+    {
+     "name": "应变能力",
+     "slug": "应变能力",
+     "question_count": 22,
+     "parts": [
+      {
+       "file": "domains/HR面试/应变能力/part-01.md",
+       "first_id": "Q005136",
+       "last_id": "Q005157",
+       "count": 22
+      }
+     ]
+    },
+    {
+     "name": "求职动机",
+     "slug": "求职动机",
+     "question_count": 11,
+     "parts": [
+      {
+       "file": "domains/HR面试/求职动机/part-01.md",
+       "first_id": "Q005161",
+       "last_id": "Q005167",
+       "count": 11
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "计算机基础",
+   "slug": "计算机基础",
+   "question_count": 334,
+   "topics": [
+    {
+     "name": "计算机网络",
+     "slug": "计算机网络",
+     "question_count": 176,
+     "parts": [
+      {
+       "file": "domains/计算机基础/计算机网络/part-01.md",
+       "first_id": "Q005173",
+       "last_id": "Q005281",
+       "count": 150
+      },
+      {
+       "file": "domains/计算机基础/计算机网络/part-02.md",
+       "first_id": "Q005289",
+       "last_id": "Q005303",
+       "count": 26
+      }
+     ]
+    },
+    {
+     "name": "计算机基础",
+     "slug": "计算机基础",
+     "question_count": 119,
+     "parts": [
+      {
+       "file": "domains/计算机基础/计算机基础/part-01.md",
+       "first_id": "Q005345",
+       "last_id": "Q005453",
+       "count": 119
+      }
+     ]
+    },
+    {
+     "name": "操作系统",
+     "slug": "操作系统",
+     "question_count": 39,
+     "parts": [
+      {
+       "file": "domains/计算机基础/操作系统/part-01.md",
+       "first_id": "Q005467",
+       "last_id": "Q005480",
+       "count": 39
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "性能测试",
+   "slug": "性能测试",
+   "question_count": 333,
+   "topics": [
+    {
+     "name": "测试工具",
+     "slug": "测试工具",
+     "question_count": 115,
+     "parts": [
+      {
+       "file": "domains/性能测试/测试工具/part-01.md",
+       "first_id": "Q005522",
+       "last_id": "Q005518",
+       "count": 115
+      }
+     ]
+    },
+    {
+     "name": "性能基础",
+     "slug": "性能基础",
+     "question_count": 97,
+     "parts": [
+      {
+       "file": "domains/性能测试/性能基础/part-01.md",
+       "first_id": "Q005623",
+       "last_id": "Q005713",
+       "count": 97
+      }
+     ]
+    },
+    {
+     "name": "性能分析",
+     "slug": "性能分析",
+     "question_count": 61,
+     "parts": [
+      {
+       "file": "domains/性能测试/性能分析/part-01.md",
+       "first_id": "Q005741",
+       "last_id": "Q005756",
+       "count": 61
+      }
+     ]
+    },
+    {
+     "name": "测试场景",
+     "slug": "测试场景",
+     "question_count": 60,
+     "parts": [
+      {
+       "file": "domains/性能测试/测试场景/part-01.md",
+       "first_id": "Q005779",
+       "last_id": "Q005804",
+       "count": 60
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "逻辑思维",
+   "slug": "逻辑思维",
+   "question_count": 295,
+   "topics": [
+    {
+     "name": "数学逻辑",
+     "slug": "数学逻辑",
+     "question_count": 98,
+     "parts": [
+      {
+       "file": "domains/逻辑思维/数学逻辑/part-01.md",
+       "first_id": "Q005928",
+       "last_id": "Q005924",
+       "count": 98
+      }
+     ]
+    },
+    {
+     "name": "演绎推理",
+     "slug": "演绎推理",
+     "question_count": 77,
+     "parts": [
+      {
+       "file": "domains/逻辑思维/演绎推理/part-01.md",
+       "first_id": "Q005948",
+       "last_id": "Q005994",
+       "count": 77
+      }
+     ]
+    },
+    {
+     "name": "分析推理",
+     "slug": "分析推理",
+     "question_count": 65,
+     "parts": [
+      {
+       "file": "domains/逻辑思维/分析推理/part-01.md",
+       "first_id": "Q006041",
+       "last_id": "Q006073",
+       "count": 65
+      }
+     ]
+    },
+    {
+     "name": "逻辑思维",
+     "slug": "逻辑思维",
+     "question_count": 25,
+     "parts": [
+      {
+       "file": "domains/逻辑思维/逻辑思维/part-01.md",
+       "first_id": "Q006080",
+       "last_id": "Q006091",
+       "count": 25
+      }
+     ]
+    },
+    {
+     "name": "归纳推理",
+     "slug": "归纳推理",
+     "question_count": 16,
+     "parts": [
+      {
+       "file": "domains/逻辑思维/归纳推理/part-01.md",
+       "first_id": "Q006101",
+       "last_id": "Q006114",
+       "count": 16
+      }
+     ]
+    },
+    {
+     "name": "语言逻辑",
+     "slug": "语言逻辑",
+     "question_count": 14,
+     "parts": [
+      {
+       "file": "domains/逻辑思维/语言逻辑/part-01.md",
+       "first_id": "Q006117",
+       "last_id": "Q006130",
+       "count": 14
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ISTQB考证",
+   "slug": "ISTQB考证",
+   "question_count": 276,
+   "topics": [
+    {
+     "name": "测试基础",
+     "slug": "测试基础",
+     "question_count": 65,
+     "parts": [
+      {
+       "file": "domains/ISTQB考证/测试基础/part-01.md",
+       "first_id": "Q006163",
+       "last_id": "Q006142",
+       "count": 65
+      }
+     ]
+    },
+    {
+     "name": "测试管理",
+     "slug": "测试管理",
+     "question_count": 55,
+     "parts": [
+      {
+       "file": "domains/ISTQB考证/测试管理/part-01.md",
+       "first_id": "Q006240",
+       "last_id": "Q006250",
+       "count": 55
+      }
+     ]
+    },
+    {
+     "name": "测试过程",
+     "slug": "测试过程",
+     "question_count": 45,
+     "parts": [
+      {
+       "file": "domains/ISTQB考证/测试过程/part-01.md",
+       "first_id": "Q006252",
+       "last_id": "Q006284",
+       "count": 45
+      }
+     ]
+    },
+    {
+     "name": "评审与静态分析",
+     "slug": "评审与静态分析",
+     "question_count": 39,
+     "parts": [
+      {
+       "file": "domains/ISTQB考证/评审与静态分析/part-01.md",
+       "first_id": "Q006297",
+       "last_id": "Q006296",
+       "count": 39
+      }
+     ]
+    },
+    {
+     "name": "测试类型与级别",
+     "slug": "测试类型与级别",
+     "question_count": 36,
+     "parts": [
+      {
+       "file": "domains/ISTQB考证/测试类型与级别/part-01.md",
+       "first_id": "Q006344",
+       "last_id": "Q006343",
+       "count": 36
+      }
+     ]
+    },
+    {
+     "name": "测试设计技术",
+     "slug": "测试设计技术",
+     "question_count": 35,
+     "parts": [
+      {
+       "file": "domains/ISTQB考证/测试设计技术/part-01.md",
+       "first_id": "Q006375",
+       "last_id": "Q006397",
+       "count": 35
+      }
+     ]
+    },
+    {
+     "name": "综合/其他",
+     "slug": "综合／其他",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/ISTQB考证/综合／其他/part-01.md",
+       "first_id": "Q006406",
+       "last_id": "Q006406",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "数据库",
+   "slug": "数据库",
+   "question_count": 266,
+   "topics": [
+    {
+     "name": "MySQL",
+     "slug": "MySQL",
+     "question_count": 203,
+     "parts": [
+      {
+       "file": "domains/数据库/MySQL/part-01.md",
+       "first_id": "Q006417",
+       "last_id": "Q006531",
+       "count": 150
+      },
+      {
+       "file": "domains/数据库/MySQL/part-02.md",
+       "first_id": "Q006536",
+       "last_id": "Q006476",
+       "count": 53
+      }
+     ]
+    },
+    {
+     "name": "SQL基础",
+     "slug": "SQL基础",
+     "question_count": 27,
+     "parts": [
+      {
+       "file": "domains/数据库/SQL基础/part-01.md",
+       "first_id": "Q006611",
+       "last_id": "Q006636",
+       "count": 27
+      }
+     ]
+    },
+    {
+     "name": "数据库概念",
+     "slug": "数据库概念",
+     "question_count": 26,
+     "parts": [
+      {
+       "file": "domains/数据库/数据库概念/part-01.md",
+       "first_id": "Q006646",
+       "last_id": "Q006645",
+       "count": 26
+      }
+     ]
+    },
+    {
+     "name": "数据库应用",
+     "slug": "数据库应用",
+     "question_count": 10,
+     "parts": [
+      {
+       "file": "domains/数据库/数据库应用/part-01.md",
+       "first_id": "Q006672",
+       "last_id": "Q006668",
+       "count": 10
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "APP专项",
+   "slug": "APP专项",
+   "question_count": 223,
+   "topics": [
+    {
+     "name": "移动端测试",
+     "slug": "移动端测试",
+     "question_count": 82,
+     "parts": [
+      {
+       "file": "domains/APP专项/移动端测试/part-01.md",
+       "first_id": "Q006723",
+       "last_id": "Q006728",
+       "count": 82
+      }
+     ]
+    },
+    {
+     "name": "问题定位",
+     "slug": "问题定位",
+     "question_count": 47,
+     "parts": [
+      {
+       "file": "domains/APP专项/问题定位/part-01.md",
+       "first_id": "Q006760",
+       "last_id": "Q006796",
+       "count": 47
+      }
+     ]
+    },
+    {
+     "name": "测试工具",
+     "slug": "测试工具",
+     "question_count": 42,
+     "parts": [
+      {
+       "file": "domains/APP专项/测试工具/part-01.md",
+       "first_id": "Q006802",
+       "last_id": "Q006824",
+       "count": 42
+      }
+     ]
+    },
+    {
+     "name": "稳定性测试",
+     "slug": "稳定性测试",
+     "question_count": 38,
+     "parts": [
+      {
+       "file": "domains/APP专项/稳定性测试/part-01.md",
+       "first_id": "Q006855",
+       "last_id": "Q006878",
+       "count": 38
+      }
+     ]
+    },
+    {
+     "name": "专项测试",
+     "slug": "专项测试",
+     "question_count": 14,
+     "parts": [
+      {
+       "file": "domains/APP专项/专项测试/part-01.md",
+       "first_id": "Q006882",
+       "last_id": "Q006891",
+       "count": 14
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "AI测试赋能",
+   "slug": "AI测试赋能",
+   "question_count": 192,
+   "topics": [
+    {
+     "name": "AI测试基础",
+     "slug": "AI测试基础",
+     "question_count": 101,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/AI测试基础/part-01.md",
+       "first_id": "Q006897",
+       "last_id": "Q006996",
+       "count": 101
+      }
+     ]
+    },
+    {
+     "name": "编程",
+     "slug": "编程",
+     "question_count": 26,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/编程/part-01.md",
+       "first_id": "Q007001",
+       "last_id": "Q007022",
+       "count": 26
+      }
+     ]
+    },
+    {
+     "name": "Agent智能体",
+     "slug": "Agent智能体",
+     "question_count": 14,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/Agent智能体/part-01.md",
+       "first_id": "Q007023",
+       "last_id": "Q007036",
+       "count": 14
+      }
+     ]
+    },
+    {
+     "name": "Skills工程",
+     "slug": "Skills工程",
+     "question_count": 14,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/Skills工程/part-01.md",
+       "first_id": "Q007037",
+       "last_id": "Q007050",
+       "count": 14
+      }
+     ]
+    },
+    {
+     "name": "MCP生态",
+     "slug": "MCP生态",
+     "question_count": 10,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/MCP生态/part-01.md",
+       "first_id": "Q007051",
+       "last_id": "Q007060",
+       "count": 10
+      }
+     ]
+    },
+    {
+     "name": "MidScene.js",
+     "slug": "MidScene.js",
+     "question_count": 9,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/MidScene.js/part-01.md",
+       "first_id": "Q007061",
+       "last_id": "Q007069",
+       "count": 9
+      }
+     ]
+    },
+    {
+     "name": "RAG知识库",
+     "slug": "RAG知识库",
+     "question_count": 8,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/RAG知识库/part-01.md",
+       "first_id": "Q007070",
+       "last_id": "Q007077",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "大模型测试",
+     "slug": "大模型测试",
+     "question_count": 6,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/大模型测试/part-01.md",
+       "first_id": "Q007078",
+       "last_id": "Q007083",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "name": "Prompt工程",
+     "slug": "Prompt工程",
+     "question_count": 4,
+     "parts": [
+      {
+       "file": "domains/AI测试赋能/Prompt工程/part-01.md",
+       "first_id": "Q007084",
+       "last_id": "Q007087",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "白盒测试",
+   "slug": "白盒测试",
+   "question_count": 163,
+   "topics": [
+    {
+     "name": "白盒测试",
+     "slug": "白盒测试",
+     "question_count": 94,
+     "parts": [
+      {
+       "file": "domains/白盒测试/白盒测试/part-01.md",
+       "first_id": "Q007088",
+       "last_id": "Q007167",
+       "count": 94
+      }
+     ]
+    },
+    {
+     "name": "单元测试",
+     "slug": "单元测试",
+     "question_count": 41,
+     "parts": [
+      {
+       "file": "domains/白盒测试/单元测试/part-01.md",
+       "first_id": "Q007182",
+       "last_id": "Q007222",
+       "count": 41
+      }
+     ]
+    },
+    {
+     "name": "测试过程",
+     "slug": "测试过程",
+     "question_count": 18,
+     "parts": [
+      {
+       "file": "domains/白盒测试/测试过程/part-01.md",
+       "first_id": "Q007225",
+       "last_id": "Q007237",
+       "count": 18
+      }
+     ]
+    },
+    {
+     "name": "测试质量",
+     "slug": "测试质量",
+     "question_count": 6,
+     "parts": [
+      {
+       "file": "domains/白盒测试/测试质量/part-01.md",
+       "first_id": "Q007242",
+       "last_id": "Q007246",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "name": "测试方法",
+     "slug": "测试方法",
+     "question_count": 4,
+     "parts": [
+      {
+       "file": "domains/白盒测试/测试方法/part-01.md",
+       "first_id": "Q007247",
+       "last_id": "Q007249",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "测试案例",
+   "slug": "测试案例",
+   "question_count": 77,
+   "topics": [
+    {
+     "name": "功能测试",
+     "slug": "功能测试",
+     "question_count": 54,
+     "parts": [
+      {
+       "file": "domains/测试案例/功能测试/part-01.md",
+       "first_id": "Q007264",
+       "last_id": "Q007271",
+       "count": 54
+      }
+     ]
+    },
+    {
+     "name": "实物测试",
+     "slug": "实物测试",
+     "question_count": 14,
+     "parts": [
+      {
+       "file": "domains/测试案例/实物测试/part-01.md",
+       "first_id": "Q007308",
+       "last_id": "Q007316",
+       "count": 14
+      }
+     ]
+    },
+    {
+     "name": "场景测试",
+     "slug": "场景测试",
+     "question_count": 9,
+     "parts": [
+      {
+       "file": "domains/测试案例/场景测试/part-01.md",
+       "first_id": "Q007325",
+       "last_id": "Q007327",
+       "count": 9
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "算法",
+   "slug": "算法",
+   "question_count": 73,
+   "topics": [
+    {
+     "name": "算法",
+     "slug": "算法",
+     "question_count": 30,
+     "parts": [
+      {
+       "file": "domains/算法/算法/part-01.md",
+       "first_id": "Q007332",
+       "last_id": "Q007356",
+       "count": 30
+      }
+     ]
+    },
+    {
+     "name": "数据结构",
+     "slug": "数据结构",
+     "question_count": 19,
+     "parts": [
+      {
+       "file": "domains/算法/数据结构/part-01.md",
+       "first_id": "Q007362",
+       "last_id": "Q007366",
+       "count": 19
+      }
+     ]
+    },
+    {
+     "name": "数学问题",
+     "slug": "数学问题",
+     "question_count": 11,
+     "parts": [
+      {
+       "file": "domains/算法/数学问题/part-01.md",
+       "first_id": "Q007386",
+       "last_id": "Q007385",
+       "count": 11
+      }
+     ]
+    },
+    {
+     "name": "编程实现",
+     "slug": "编程实现",
+     "question_count": 9,
+     "parts": [
+      {
+       "file": "domains/算法/编程实现/part-01.md",
+       "first_id": "Q007390",
+       "last_id": "Q007396",
+       "count": 9
+      }
+     ]
+    },
+    {
+     "name": "智力题",
+     "slug": "智力题",
+     "question_count": 4,
+     "parts": [
+      {
+       "file": "domains/算法/智力题/part-01.md",
+       "first_id": "Q007397",
+       "last_id": "Q007400",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "安全测试",
+   "slug": "安全测试",
+   "question_count": 66,
+   "topics": [
+    {
+     "name": "安全测试方法",
+     "slug": "安全测试方法",
+     "question_count": 27,
+     "parts": [
+      {
+       "file": "domains/安全测试/安全测试方法/part-01.md",
+       "first_id": "Q007402",
+       "last_id": "Q007401",
+       "count": 27
+      }
+     ]
+    },
+    {
+     "name": "注入&Xss",
+     "slug": "注入&Xss",
+     "question_count": 23,
+     "parts": [
+      {
+       "file": "domains/安全测试/注入&Xss/part-01.md",
+       "first_id": "Q007431",
+       "last_id": "Q007447",
+       "count": 23
+      }
+     ]
+    },
+    {
+     "name": "系统与配置",
+     "slug": "系统与配置",
+     "question_count": 9,
+     "parts": [
+      {
+       "file": "domains/安全测试/系统与配置/part-01.md",
+       "first_id": "Q007456",
+       "last_id": "Q007452",
+       "count": 9
+      }
+     ]
+    },
+    {
+     "name": "网络攻击",
+     "slug": "网络攻击",
+     "question_count": 6,
+     "parts": [
+      {
+       "file": "domains/安全测试/网络攻击/part-01.md",
+       "first_id": "Q007460",
+       "last_id": "Q007461",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "name": "安全防护",
+     "slug": "安全防护",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/安全测试/安全防护/part-01.md",
+       "first_id": "Q007466",
+       "last_id": "Q007466",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "AI产品测试",
+   "slug": "AI产品测试",
+   "question_count": 12,
+   "topics": [
+    {
+     "name": "AI性能测试",
+     "slug": "AI性能测试",
+     "question_count": 3,
+     "parts": [
+      {
+       "file": "domains/AI产品测试/AI性能测试/part-01.md",
+       "first_id": "Q007467",
+       "last_id": "Q007469",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "AI模型测试",
+     "slug": "AI模型测试",
+     "question_count": 3,
+     "parts": [
+      {
+       "file": "domains/AI产品测试/AI模型测试/part-01.md",
+       "first_id": "Q007470",
+       "last_id": "Q007472",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "AI测试实践",
+     "slug": "AI测试实践",
+     "question_count": 2,
+     "parts": [
+      {
+       "file": "domains/AI产品测试/AI测试实践/part-01.md",
+       "first_id": "Q007473",
+       "last_id": "Q007474",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "name": "AI测试数据",
+     "slug": "AI测试数据",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/AI产品测试/AI测试数据/part-01.md",
+       "first_id": "Q007475",
+       "last_id": "Q007475",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "AI测试概论",
+     "slug": "AI测试概论",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/AI产品测试/AI测试概论/part-01.md",
+       "first_id": "Q007476",
+       "last_id": "Q007476",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "AI质量评估",
+     "slug": "AI质量评估",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/AI产品测试/AI质量评估/part-01.md",
+       "first_id": "Q007477",
+       "last_id": "Q007477",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "行业AI测试",
+     "slug": "行业AI测试",
+     "question_count": 1,
+     "parts": [
+      {
+       "file": "domains/AI产品测试/行业AI测试/part-01.md",
+       "first_id": "Q007478",
+       "last_id": "Q007478",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

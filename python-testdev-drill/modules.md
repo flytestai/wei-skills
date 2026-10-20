@@ -76,6 +76,10 @@ For special modes:
 - `Selenium与UI自动化题`
 - `测试理论与用例设计题`
 
+## Supplementary Full Bank
+
+`bank/` is a 7,478-question hierarchical query pool organized by domain and topic. It is not a state module: it does not appear in `sync_state.py`, does not write to `state.md`, and does not affect progress, mistakes, favorites, or history of the 15 active modules. Use `bank/query_bank.py` for lookup, random selection, and topic browsing.
+
 ## Future Module Rule
 
 Any newly created module must inherit the same routing rule:

@@ -1,6 +1,6 @@
 ---
 name: python-testdev-drill
-description: Reusable module-based drill workflow for Python test-development engineer interview practice, with batch drilling, per-module history, wrong-book with spaced review, favorites, custom bank, non-repeating extraction, report, and multiple drill modes.
+description: Reusable module-based drill workflow for Python test-development engineer interview practice, with a 7,478-question domain/topic hierarchical bank, batch drilling, per-module history, wrong-book with spaced review, favorites, custom bank, non-repeating extraction, report, and multiple drill modes.
 ---
 
 # Python TestDev Drill (上海中小厂 25K 定向)
@@ -10,6 +10,26 @@ description: Reusable module-based drill workflow for Python test-development en
 ## 模块清单（15 个，全部注册在 sync_state.py 的 bank_map）
 
 Python基础手写代码题(90，中小厂定向重写版) / Python编程基础理论面试题(100) / Python高阶编程(34) / 自动化测试题(10) / Pytest框架(20) / 测试开发面试题(15，STAR讲项目套路) / 测试工程化与CI/CD(10，重写版) / 性能测试(80) / 中间件(40) / 数据库(25) / Linux(40) / HTTP协议与接口测试(15) / Selenium与UI自动化(18) / 测试理论与用例设计(20) / 测试场景与排查(20)
+
+## 全量分级题库（7,478 题，按领域/专题）
+
+`bank/` 是独立的全量题库查询池，按「领域 → 专题/知识点」组织，覆盖 18 个领域、102 个专题：
+
+- `bank/index.md`：领域/专题总索引，带每个专题的 Markdown 文件链接。
+- `bank/bank.json`：完整结构化题库，字段含 `id / domain / topic / type / difficulty / question / options / answer / answer_detail / analysis`。
+- `bank/query_bank.py`：查询工具，支持统计、随机抽题、搜索、按编号查看、按领域/专题浏览。
+- `bank/domains/<领域>/<专题>/part-XX.md`：可读题目文件，每个文件最多 150 题，按难度从低到高排列。
+
+当用户说「按领域刷题」「按专题刷题」「从全量题库抽题」「随机来几道 XX 题」时，先运行：
+
+```bash
+python bank/query_bank.py stats
+python bank/query_bank.py domains
+python bank/query_bank.py topics --domain <领域>
+python bank/query_bank.py random --domain <领域> --topic <专题> --count <N>
+```
+
+全量题库是**参考/查询池**，不替代上面 15 个已注册模块，也不写入它们的 `state.md` 进度；需要连续刷某个专题时，用 `query_bank.py list --offset` 顺序推进。7,478 道题均有答案和解析；43 道答案、371 道解析为 AI 补全，Markdown 中有标注。
 
 ## 用户明确要求的答题风格（必须遵守）
 
@@ -35,14 +55,15 @@ Python基础手写代码题(90，中小厂定向重写版) / Python编程基础�
 
 ## 触发场景
 
-用户想：按模块刷题/做题、指定每轮题数、续刷保存的进度、复习错题、复习收藏题、保存自建题、避免重复题、查看刷题报表、重刷到期错题、模拟面试时，使用本 skill。
+用户想：按模块刷题/做题、按领域或专题刷全量题库、随机抽题、搜索题目、指定每轮题数、续刷保存的进度、复习错题、复习收藏题、保存自建题、避免重复题、查看刷题报表、重刷到期错题、模拟面试时，使用本 skill。
 
-## 两种核心模式
+## 三种核心模式
 
 | 模式 | 触发词 | 行为 |
 |------|--------|------|
 | **刷题模式** | `刷题` / `继续刷题` / `切换到刷题模式` | 题目 + 参考答案一起展示 |
 | **做题模式** | `做题` / `继续做题` / `做题模式` | 只给题目，等用户作答，再评分和建议 |
+| **全量题库模式** | `按领域刷题` / `按专题刷题` / `从全量题库抽题` | 用 `bank/query_bank.py` 检索并展示；不写入 15 个模块的 state |
 
 - `继续` = 复用上次模块、模式、批量大小。
 - 用户点名模块即切换；切换不重置其他模块状态。
@@ -173,6 +194,9 @@ sync_state.py review --module <M>                         # 查看今日到期�
 | 中间件面试题 | MODULE_MIDDLEWARE_INTERVIEW.md |
 | 数据库面试题 | MODULE_DATABASE_INTERVIEW.md |
 | Linux面试题 | MODULE_LINUX_INTERVIEW.md |
+| 全量分级题库 | bank/index.md（入口）、bank/bank.json（结构化）、bank/query_bank.py（查询） |
 
 题库格式统一：`### 编号. 题名` + tags / difficulty / frequency / prompt / answer。
 扩充题库时：从真实面试来源搜集（面试鸭、CSDN 测试面试真题、51Testing 等），去重后追加，保持编号连续。
+
+全量分级题库格式：每个专题一个目录，`part-XX.md` 内以 `## Qxxxxxx` 分题，字段为题型、难度、题目、选项、答案、正确选项、解析。新增领域或专题时，创建同名目录，并同步更新 `bank/index.md`、`bank/index.json` 与 `bank/bank.json`。
