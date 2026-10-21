@@ -148,7 +148,39 @@ def fetch_recent_messages():
 1. **失败必须 `return None`**。写成 `return []` 会让拉取失败看起来像“暂时没有新消息”，水位永远不动而无人察觉。
 2. **`has_more` 已实测为 `True`**（页大小 50 仍是 True），说明单页不够就永远有旧消息在更深处。交易活跃期 27~47s 一轮 + 每页 20 条，理论上有极端刷屏漏消息风险；多页回溯 + `message_id` 去重把这个窗口封死，同时限制 `MAX_FETCH_PAGES` 防无限翻页。
 
-### 水位原子写
+```python
+VIP_KEYWORD = "【仅TA的真爱粉可见】"
+# 不带书名号的写法同样算 VIP（群主常漏打开头的「【」）
+VIP_KEYWORDS = (VIP_KEYWORD, "仅TA的真爱粉可见")
+```
+
+**匹配必须用最短完整词 `仅TA的真爱粉可见`，不能用带括号的整串。** 实测群主会漏打开头的 `【`，产出 `仅TA的真爱粉可见】` —— 带 `【` 的字面匹配直接落空，那条消息被当成公开消息静默跳过。`【仅TA的真爱粉可见】` 是 `仅TA的真爱粉可见` 的超集，所以短串同时覆盖两种写法。
+
+命中判定与正文清洗都用元组遍历，两种写法都要从正文里剥掉：
+
+```python
+if any(k in content for k in VIP_KEYWORDS):
+    body = content
+    for k in VIP_KEYWORDS:
+        body = body.replace(k, "")
+    body = body.strip().lstrip("】").strip()   # 去掉漏打左括号残留的孤立「】」
+```
+
+**改关键字规则后用真实历史消息回放验证，不要只跑构造用例**：
+
+```python
+msgs = fetch_recent_messages(0) or []          # 拉到当前水位为止的全部历史
+hit, miss = [], []
+for m in msgs:
+    c = (m.get("content") or "").replace("\\n", "\n")
+    if m.get("msg_type") != "text":
+        continue
+    (hit if any(k in c for k in VIP_KEYWORDS) else miss).append(
+        (m.get("message_position"), c[:40]))
+print(len(hit), len(miss))
+```
+
+重点看 `miss` 里开头几个字是 `仅TA` / `TA的真爱粉` 的条目——那些才是旧规则的漏网之鱼。这一步能立刻证明规则改动值不值得。
 
 ```python
 def save_state(state):
@@ -163,13 +195,13 @@ def save_state(state):
 1. 读 `state`；`last_position == 0` 视为**首次运行**：只登记最新 `position`，不补发历史，直接 return。
 2. `fetch_recent_messages()` 返回 `None` → `_fail_count += 1`；达到 `ALERT_THRESHOLD(3)` 时 `send_alert()`（`ALERT_COOLDOWN=1800s`）。恢复后写日志并清零。
 3. 按 `message_position` 升序，逐条处理 `pos > last_position`：
-   - `text` 且含 `VIP_KEYWORD` → 去掉关键词得 `body` → `build_vip_text()` → 推送；`last_is_vip = 推送是否成功`
+   - `text` 且含任一 `VIP_KEYWORDS`（`【仅TA的真爱粉可见】` 或裸写法 `仅TA的真爱粉可见`）→ 剥掉关键字得 `body` → `build_vip_text()` → 推送；`last_is_vip = 推送是否成功`
    - `text` 不含关键词 → `last_is_vip = False`
    - `image` 且 `last_is_vip` → 正则 `img_v3_[A-Za-z0-9_-]+` 提 key → `download_image()` → 以纯图推送；失败只记日志
    - `image` 且非 VIP → 跳过；其他类型（sticker/file 等）→ `last_is_vip = False`
 4. **每条消息处理完立即 `save_state()`**，不是整批处理完才存——中途崩溃只会重发一条，不会丢一批。
 
-**注意**：图片仅靠 `last_is_vip` 标记判断是否随附，**没有时间窗口限制**（旧文档写的“10 分钟内”是错的）。只要紧跟 VIP 文本，后续图片都会被转发。
+**注意**：图片仅靠 `last_is_vip` 标记判断是否随附，**没有时间窗口限制**（旧文档写的“10 分钟内”是错的）。`last_is_vip` 是**单条记忆的状态机**，语义就是“VIP 之后的图片继续转发，直到遇见一条公开消息为止”：VIP 文本 → `True`；其后图片跟随；中间任何一条非 VIP 文本立刻置 `False`，再往后的图片不再转发。
 
 VIP 文本推送失败时 `last_is_vip=False`，其配图也就不转发——有意为之：正文没送到，单发图没意义。
 
@@ -321,7 +353,7 @@ def build_vip_text(create_time, body):
 - **为什么不能用原生细线**：个人微信文本气泡是原生 Text 控件（非 Webview），不渲染 Markdown `<hr>`，也不支持 1px `#D8D8D8` Hairline；键盘符号一律渲染成与正文同色的深色。用户截图里的“原生浅灰细线”来自支持 Markdown 的客户端（企业微信/钉钉/飞书），**个人微信无法复现，不要再尝试**。
 - **文字与图片分开投递**：VIP 文本一个气泡发完，配图随后单独作为纯图发送，不混排。
 - **`format_vip_time`** 兼容 `%Y-%m-%d %H:%M`、`%Y-%m-%d %H:%M:%S`、ISO8601（`T`/`Z`）三种输入，输出 `星期X YYYY-MM-DD HH:mm`；中文星期数组 `["星期一".."星期日"]` 用 `dt.weekday()` 索引；解析失败原样返回。
-- **正文清洗**：`content.replace("\\n", "\n")` 先还原 JSON 转义换行，再 `replace(VIP_KEYWORD, "").strip()`。
+- **正文清洗**：`content.replace("\\n", "\n")` 先还原 JSON 转义换行，再遍历 `VIP_KEYWORDS` `replace(k, "").strip()`（两种关键字写法都要剥，否则裸写法会留在正文里），最后 `lstrip("】").strip()` 去掉漏打左书名号残留的孤立右括号。群主实际产出 `仅TA的真爱粉可见】` 时，剥掉裸写法后正文开头会剩一个 `】`，不清会跟着气泡发出去。
 
 ## Token 保活（`token_keeper.py`）
 
@@ -423,6 +455,7 @@ fi
 3. `env -i HOME=... PATH=... HERMES_HOME=... <venv>/python3 -c "...fetch_recent_messages()"` 最小环境复现
 4. `lark-cli auth status` 看 `tokenStatus` / `expiresAt` / `refreshExpiresAt`
 5. `pgrep -af "python3 .*monitor.py"` 确认只有一个实例
+6. 记录日志里**最后一条 `VIP 命中 pos=` 与当前 `last_position` 的差值**。差值 > 1 不一定是漏推（中间夹着公开消息很正常），但水位已经越过、且内容开头就是 `仅TA的真爱粉可见` 的条目，就是关键字规则漏掉的真实 VIP——要么补发，要么确认无需补发并告诉用户。
 
 ### 水位回退补发
 
@@ -471,6 +504,8 @@ fi
 | 周期补偿 | `sleep(max(5, target - elapsed))` | 日志一对“目标周期/本轮耗时/休眠”相加等于目标值 |
 | 告警带原因 | `_last_cli_error` 存最近一次 `run_cli` 失败原因，写进告警正文 | 手动断开 token → 告警里应直接看到 `not_configured` 等关键字 |
 | 送达统计 | `state.push_stats = {date, pushed, failed}`，每日滚动 | `cat state.json` 能看到今日推送/失败计数 |
+| 关键字双写法 | `VIP_KEYWORDS` 元组同时认 `【仅TA的真爱粉可见】` 与裸写法 | 历史回放里 `仅TA的真爱粉可见】` 开头那条应命中 |
+| 残留括号清理 | 剥完关键字再 `lstrip("】")`，去掉漏打左括号留下的孤立右括号 | pos=1435 回放 → 正文应以「在10月9日」开头，而不是「】」 |
 | 心跳分时段阀值 | 交易期 180s / 白天 600s / 夜间 1200s | 伪造 200s 前心跳且在交易期 → cron 应强杀重启 |
 | 心跳缺失宽限 | 无心跳且 pid 文件存在 <5min 不重启 | 首次部署不被误杀 |
 
@@ -483,7 +518,7 @@ fi
 1. **`last_position == 0` 首次运行不补发**：有意为之，但意味着首次部署前已存在的 VIP 消息永不转发，部署后需人工回查。
 2. **图片链路未获真实验证**：本群 50 条采样全部 `text`，`img_v3` 零命中。`img_v3_` 正则与 `messages-resources-download` 参数照 CLI 文档写，待真图出现时才能确认。
 3. **纯图推送传 `" "`（单个空格）**：`message=""` 会走文本分支被判空，只发 media 不一定能成气泡。
-4. **硬编码常量**：`CHAT_ID` / `VIP_KEYWORD` / 微信目标均写在文件头，换群需改代码。要复用需外提 `config.json`。
+4. **硬编码常量**：`CHAT_ID` / `VIP_KEYWORDS` / 微信目标均写在文件头，换群需改代码。要复用需外提 `config.json`。
 5. **`crontab_check.log` 只截断不全轮转**：超 1MB 时保留尾部 200KB，不保留历史段。
 
 ### 可选的下一步
